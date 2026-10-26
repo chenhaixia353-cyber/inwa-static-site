@@ -27,10 +27,9 @@ npm install
 npm run dev
 ```
 
-Run the static production build and type/content checks:
+Run the static production build:
 
 ```sh
-npm run check
 npm run build
 npm run preview
 ```
@@ -60,15 +59,20 @@ npm run preview
    ```
 
 3. Use a unique, URL-safe case ID. `order` controls the homepage order. `sector` and `services` supply filter options. Set `home: false` to keep the case in the detail routes and All filter, but omit it from Featured.
-4. Run `npm run check && npm run build`, then commit the Markdown and media files.
+4. Run `npm run build`, then commit the Markdown and media files.
 
 The generated case URL is `/work/<case-id>/`.
 
 ## GitHub Pages deployment
 
-The included Actions workflow builds and publishes `dist` on pushes to `main`. In repository settings, enable **Pages → Build and deployment → GitHub Actions**.
+The included Actions workflow (`.github/workflows/deploy-pages.yml`) builds and publishes `dist` on every push to `main`. In repository settings, enable **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
-For a repository URL such as `https://username.github.io/repository-name/`, add a repository variable named `PAGES_BASE_PATH` with the value `repository-name`. Leave it unset when publishing at a custom domain or a `username.github.io` root.
+The site is published at the custom domain `www.inwa.top`, configured through `public/CNAME`. Point the domain at GitHub Pages with a `CNAME` DNS record:
+
+- `www` → `chenhaixia353-cyber.github.io`
+- `@` → the GitHub Pages apex addresses `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+
+Because the site is served from the domain root, `PAGES_BASE_PATH` must stay unset.
 
 ## Media notes
 

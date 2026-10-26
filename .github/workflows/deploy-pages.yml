@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PAGES_BASE_PATH: inwa-static-site
     steps:
       - name: Checkout
         uses: actions/checkout@v4

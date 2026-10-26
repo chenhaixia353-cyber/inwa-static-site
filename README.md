@@ -67,12 +67,12 @@ The generated case URL is `/work/<case-id>/`.
 
 The included Actions workflow (`.github/workflows/deploy-pages.yml`) builds and publishes `dist` on every push to `main`. In repository settings, enable **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
-The site is published at the custom domain `www.inwa.top`, configured through `public/CNAME`. Point the domain at GitHub Pages with a `CNAME` DNS record:
+The build base path is controlled by the `PAGES_BASE_PATH` environment variable in the workflow, which `astro.config.mjs` reads:
 
-- `www` → `chenhaixia353-cyber.github.io`
-- `@` → the GitHub Pages apex addresses `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+- **Project URL** (`https://chenhaixia353-cyber.github.io/inwa-static-site/`) — set `PAGES_BASE_PATH: inwa-static-site` in the workflow. This is the current setting.
+- **Custom domain** (`https://www.inwa.top/`) — remove `PAGES_BASE_PATH` from the workflow and add a `public/CNAME` file containing `www.inwa.top`, then point the domain at GitHub Pages with a `CNAME` DNS record (`www` → `chenhaixia353-cyber.github.io`, apex → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`).
 
-Because the site is served from the domain root, `PAGES_BASE_PATH` must stay unset.
+Only one of the two can be active at a time, because the base path is baked into the built HTML.
 
 ## Media notes
 

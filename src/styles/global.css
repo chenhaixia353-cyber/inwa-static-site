@@ -1012,16 +1012,18 @@ input:focus-visible {
 }
 
 .project-page {
-  padding-top: 25px;
+  padding-top: 0;
 }
 
 .project-intro {
-  padding-bottom: clamp(42px, 7vw, 90px);
+  width: 80%;
+  margin: 0 auto;
+  padding: 0 0 34px;
 }
 
 .back-link {
   display: inline-block;
-  margin-bottom: clamp(48px, 8vw, 105px);
+  margin-bottom: 22px;
   color: #777;
   font-size: 12px;
 }
@@ -1031,18 +1033,18 @@ input:focus-visible {
 }
 
 .project-intro h1 {
-  max-width: 1200px;
-  margin: 18px 0 8px;
-  font-size: clamp(46px, 8.5vw, 122px);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 0.98;
+  margin: 1.4em 0 1.5em;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.4;
 }
 
-.project-title-en {
-  margin: 0;
+.project-intro h1 span {
+  margin-left: 1.5em;
   color: #777;
-  font-size: clamp(16px, 2vw, 24px);
+  font-size: 0.65em;
+  vertical-align: 3px;
 }
 
 .job-page {
@@ -1219,20 +1221,23 @@ input:focus-visible {
 }
 
 .project-cover {
+  height: 79vh;
   margin: 0;
+  overflow: hidden;
   background: #eee;
 }
 
 .project-cover img {
   display: block;
   width: 100%;
-  max-height: min(78vh, 900px);
+  height: 100%;
   object-fit: cover;
 }
 
 .project-information {
-  padding-top: clamp(55px, 9vw, 120px);
-  padding-bottom: clamp(80px, 13vw, 170px);
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: clamp(42px, 6vw, 84px);
 }
 
 .section-heading {
@@ -1283,6 +1288,45 @@ input:focus-visible {
   width: 100%;
   height: auto;
   margin: 28px 0;
+}
+
+.project-gallery {
+  display: grid;
+  width: 90%;
+  gap: clamp(48px, 8vw, 120px);
+  margin: 0 auto;
+}
+
+.project-gallery-item {
+  margin: 0;
+}
+
+.project-gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-more {
+  padding-top: clamp(54px, 8vw, 110px);
+  padding-bottom: clamp(70px, 10vw, 130px);
+}
+
+@media (max-width: 959px) {
+  .project-cover {
+    height: 40vh;
+  }
+
+  .project-intro,
+  .project-information {
+    width: 90%;
+  }
+}
+
+@media (max-width: 767px) {
+  .project-cover {
+    height: 35vh;
+  }
 }
 
 .text-link {
@@ -1497,22 +1541,35 @@ input:focus-visible {
   }
 
   .back-link {
-    margin-bottom: 58px;
+    margin-bottom: 22px;
+  }
+
+  .project-intro {
+    padding-top: 28px;
   }
 
   .project-intro h1 {
-    margin-top: 16px;
-    font-size: clamp(42px, 12vw, 72px);
+    margin-top: 10px;
+    font-size: 24px;
   }
 
   .project-cover img {
-    min-height: 260px;
-    max-height: 62vh;
+    min-height: 0;
+    max-height: none;
   }
 
   .project-content {
     grid-template-columns: 1fr;
     gap: 15px;
+    padding-bottom: 24px;
+  }
+
+  .project-information {
+    padding-bottom: 48px;
+  }
+
+  .project-gallery {
+    gap: 42px;
   }
 
   .prose {

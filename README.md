@@ -36,7 +36,7 @@ npm run preview
 
 ## Add a case
 
-1. Add its cover image (and optional project media) under `public/assets/cases/<case-id>/`.
+1. Add its homepage card image as `cover.*` under `public/assets/cases/<case-id>/`. Add the original detail images in display order as `gallery-01.*`, `gallery-02.*`, and so on. `gallery-01` becomes the detail-page banner; the remaining images are shown in the project gallery. Supported formats are JPG, PNG, GIF, WebP, and AVIF.
 2. Create `src/content/cases/<case-id>.md` using this frontmatter:
 
    ```md

@@ -1,0 +1,94 @@
+---
+const base = import.meta.env.BASE_URL;
+const basePath = base === '/' ? '' : base.replace(/\/$/, '');
+const currentPath = Astro.url.pathname;
+const isAboutPage = currentPath.startsWith(`${basePath}/about`);
+const isContactPage =
+  currentPath.startsWith(`${basePath}/contact`) || currentPath.startsWith(`${basePath}/job/`);
+const workIsCurrent = !isAboutPage && !isContactPage;
+---
+
+<header class="site-header">
+  <a class="wordmark" href={base} aria-label="INWA SPACE 首页">INWA SPACE</a>
+  <nav class="desktop-nav" aria-label="Main navigation">
+    <a href={`${base}#work`} aria-current={workIsCurrent ? 'page' : undefined}>Work</a>
+    <a href={`${base}about/`} aria-current={isAboutPage ? 'page' : undefined}>About</a>
+    <a href={`${base}contact/`} aria-current={isContactPage ? 'page' : undefined}>Contact</a>
+    <button class="search-toggle" type="button" aria-expanded="false" aria-controls="site-search" aria-label="搜索案例">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.4"></circle><path d="m15.5 15.5 5 5"></path></svg>
+    </button>
+  </nav>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="打开导航">
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<form class="search-panel" id="site-search" role="search" action={base} method="get" hidden>
+  <label for="case-search">SEARCH PROJECTS</label>
+  <input id="case-search" type="search" name="q" placeholder="输入项目或客户名称" autocomplete="off" />
+  <button class="search-close" type="button" aria-label="关闭搜索">×</button>
+</form>
+
+<nav class="menu-panel" id="site-menu" aria-hidden="true" aria-label="Mobile navigation">
+  <div class="menu-panel-top">
+    <a class="wordmark wordmark-light" href={base}>INWA SPACE</a>
+    <button class="menu-close" type="button" aria-label="关闭导航">CLOSE <span>×</span></button>
+  </div>
+  <div class="menu-links">
+    <a href={`${base}#work`} aria-current={workIsCurrent ? 'page' : undefined}><span>01</span>WORK</a>
+    <a href={`${base}about/`} aria-current={isAboutPage ? 'page' : undefined}><span>02</span>ABOUT</a>
+    <a href={`${base}contact/`} aria-current={isContactPage ? 'page' : undefined}><span>03</span>CONTACT</a>
+  </div>
+  <p class="menu-caption">INWA SPACE · BEIJING</p>
+</nav>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const close = document.querySelector<HTMLButtonElement>('.menu-close');
+  const menu = document.querySelector<HTMLElement>('.menu-panel');
+  const searchToggle = document.querySelector<HTMLButtonElement>('.search-toggle');
+  const searchPanel = document.querySelector<HTMLFormElement>('.search-panel');
+  const searchInput = document.querySelector<HTMLInputElement>('#case-search');
+
+  function setMenuOpen(isOpen: boolean) {
+    toggle?.setAttribute('aria-expanded', String(isOpen));
+    toggle?.setAttribute('aria-label', isOpen ? '关闭导航' : '打开导航');
+    menu?.setAttribute('aria-hidden', String(!isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+  }
+
+  function setSearchOpen(isOpen: boolean) {
+    searchToggle?.setAttribute('aria-expanded', String(isOpen));
+    if (searchPanel) searchPanel.hidden = !isOpen;
+    if (isOpen) searchInput?.focus();
+  }
+
+  toggle?.addEventListener('click', () => {
+    setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+  close?.addEventListener('click', () => setMenuOpen(false));
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false));
+  });
+  searchToggle?.addEventListener('click', () => {
+    setSearchOpen(searchToggle.getAttribute('aria-expanded') !== 'true');
+  });
+  searchPanel?.addEventListener('submit', (event) => {
+    if (document.querySelector('.case-card')) {
+      event.preventDefault();
+      searchInput?.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
+  document.querySelector('.search-close')?.addEventListener('click', () => {
+    setSearchOpen(false);
+    if (searchInput) searchInput.value = '';
+    searchInput?.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setMenuOpen(false);
+      setSearchOpen(false);
+    }
+  });
+</script>

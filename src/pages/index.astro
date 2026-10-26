@@ -1,0 +1,168 @@
+---
+import { getCollection } from 'astro:content';
+import CaseCard from '../components/CaseCard.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
+const featuredCount = cases.filter(({ data }) => data.home).length;
+---
+
+<SiteLayout bodyClass="page-ideas">
+  <SiteHeader />
+  <main id="top">
+    <section class="archive-header" aria-labelledby="archive-title">
+      <p class="eyebrow">INWA SPACE <span>/</span> BEIJING</p>
+      <h1 class="rotating-title" id="archive-title" aria-label="Design with purpose">
+        <span class="phrase phrase-active">MAKE MEANING</span>
+        <span class="phrase">DESIGN CULTURE</span>
+        <span class="phrase">SHAPE SPACE</span>
+        <span class="phrase">TELL STORIES</span>
+      </h1>
+      <p class="archive-description">联合设计，让品牌被看见，让空间被记住。</p>
+    </section>
+
+    <section class="work-section section-pad" id="work" aria-label="Selected projects">
+      <div class="work-toolbar">
+        <nav class="filter-nav" aria-label="Filter projects">
+          <button class="filter-mode is-active" type="button" data-filter-mode="featured" aria-pressed="true">Featured</button>
+          <button class="filter-mode" type="button" data-filter-mode="client" aria-pressed="false">Client</button>
+          <button class="filter-mode" type="button" data-filter-mode="sector" aria-pressed="false">Sector</button>
+          <button class="filter-mode" type="button" data-filter-mode="service" aria-pressed="false">Service</button>
+          <button class="filter-mode" type="button" data-filter-mode="all" aria-pressed="false">All</button>
+        </nav>
+        <span class="results-count" aria-live="polite">
+          <span id="visible-count">{String(featuredCount).padStart(2, '0')}</span> PROJECTS
+        </span>
+      </div>
+      <div class="filter-options" id="filter-options" aria-label="Filter options" hidden></div>
+      <div class="case-grid">
+        {cases.map(({ id, data }) => (
+          <CaseCard
+            slug={id}
+            title={data.title}
+            titleEn={data.titleEn}
+            category={data.category}
+            sector={data.sector}
+            services={data.services}
+            client={data.client}
+            cover={data.cover}
+            alt={data.alt}
+            order={data.order}
+            featured={data.home}
+          />
+        ))}
+      </div>
+      <p class="empty-state" hidden>No projects found.</p>
+    </section>
+
+    <section class="studio-strip section-pad" id="studio">
+      <p class="eyebrow">INDEPENDENT CREATIVE STUDIO / SINCE 2010</p>
+      <p>品牌识别、文化空间与体验设计。<a href={`${import.meta.env.BASE_URL}about/`}>MEET INWA SPACE <span>↗</span></a></p>
+    </section>
+  </main>
+  <SiteFooter />
+</SiteLayout>
+
+<script>
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.case-card'));
+  const modes = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter-mode]'));
+  const optionsPanel = document.querySelector<HTMLElement>('#filter-options');
+  const visibleCount = document.querySelector<HTMLElement>('#visible-count');
+  const emptyState = document.querySelector<HTMLElement>('.empty-state');
+  const searchInput = document.querySelector<HTMLInputElement>('#case-search');
+  const phraseNodes = Array.from(document.querySelectorAll<HTMLElement>('.phrase'));
+  const terms = new Map<string, string>();
+  let activeMode = 'featured';
+  let phraseIndex = 0;
+
+  function setActiveMode(mode: string) {
+    activeMode = mode;
+    terms.clear();
+    modes.forEach((button) => {
+      const active = button.dataset.filterMode === mode;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    if (optionsPanel) {
+      optionsPanel.replaceChildren();
+      optionsPanel.hidden = !['client', 'sector', 'service'].includes(mode);
+    }
+    if (optionsPanel && !optionsPanel.hidden) {
+      const values = cards.flatMap((card) =>
+        mode === 'service'
+          ? (card.dataset.services ?? '').split('|').filter(Boolean)
+          : [card.dataset[mode] ?? ''],
+      );
+      const uniqueValues = [...new Set(values)].sort((a, b) => a.localeCompare(b, 'zh-CN'));
+      const addOption = (label: string, value: string) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'filter-option';
+        button.textContent = label;
+        button.dataset.filterValue = value;
+        button.setAttribute('aria-pressed', 'false');
+        button.addEventListener('click', () => {
+          if (value) terms.set(mode, value);
+          else terms.delete(mode);
+          optionsPanel?.querySelectorAll('.filter-option').forEach((option) => {
+            option.classList.toggle('is-active', option === button);
+            option.setAttribute('aria-pressed', String(option === button));
+          });
+          updateCards();
+        });
+        optionsPanel?.append(button);
+      };
+      const allLabel = mode === 'client' ? 'All clients' : mode === 'sector' ? 'All sectors' : 'All services';
+      addOption(allLabel, '');
+      uniqueValues.forEach((value) => addOption(value, value));
+      optionsPanel.querySelector<HTMLButtonElement>('.filter-option')?.classList.add('is-active');
+    }
+    updateCards();
+  }
+
+  function updateCards() {
+    const query = searchInput?.value.trim().toLocaleLowerCase() ?? '';
+    let count = 0;
+    cards.forEach((card) => {
+      const searchableText = `${card.innerText} ${card.dataset.client} ${card.dataset.sector} ${card.dataset.services}`.toLocaleLowerCase();
+      const matchesMode =
+        activeMode === 'featured'
+          ? card.dataset.featured === 'true'
+          : activeMode === 'client'
+            ? !terms.has('client') || card.dataset.client === terms.get('client')
+            : activeMode === 'sector'
+              ? !terms.has('sector') || card.dataset.sector === terms.get('sector')
+              : activeMode === 'service'
+                ? !terms.has('service') || (card.dataset.services ?? '').split('|').includes(terms.get('service') ?? '')
+                : true;
+      const visible = matchesMode && (!query || searchableText.toLocaleLowerCase().includes(query));
+      card.hidden = !visible;
+      if (visible) count += 1;
+    });
+    if (visibleCount) visibleCount.textContent = String(count).padStart(2, '0');
+    if (emptyState) emptyState.hidden = count > 0;
+  }
+
+  modes.forEach((button) => {
+    button.addEventListener('click', () => setActiveMode(button.dataset.filterMode ?? 'featured'));
+  });
+  searchInput?.addEventListener('input', updateCards);
+
+  const initialQuery = new URLSearchParams(window.location.search).get('q')?.trim() ?? '';
+  if (searchInput && initialQuery) {
+    searchInput.value = initialQuery;
+    setActiveMode('all');
+  } else {
+    updateCards();
+  }
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.setInterval(() => {
+      phraseNodes[phraseIndex]?.classList.remove('phrase-active');
+      phraseIndex = (phraseIndex + 1) % phraseNodes.length;
+      phraseNodes[phraseIndex]?.classList.add('phrase-active');
+    }, 3000);
+  }
+</script>

@@ -1,0 +1,67 @@
+---
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { jobs, recruitmentEmail } from '../../data/jobs';
+
+export function getStaticPaths() {
+  return jobs.map((job) => ({ params: { slug: job.slug }, props: { job } }));
+}
+
+const { job } = Astro.props;
+const subject = encodeURIComponent(`应聘${job.title} - ${job.titleEn}`);
+const base = import.meta.env.BASE_URL;
+---
+
+<SiteLayout
+  title={`${job.title} ${job.titleEn} — INWA SPACE 招聘`}
+  description={`INWA SPACE 招聘${job.title}。查看岗位职责和职位要求，并发送作品集与简历。`}
+  bodyClass="page-careers"
+>
+  <SiteHeader />
+  <main id="top" class="job-page">
+    <section class="job-hero section-pad" aria-labelledby="job-title">
+      <p class="eyebrow">INWA SPACE <span>/</span> CAREERS</p>
+      <h1 id="job-title">{job.title}</h1>
+      <p class="job-title-en">{job.titleEn}</p>
+      <div class="job-hero-bottom">
+        <p>和我们一起，让设计回应真实的内容。</p>
+        <span>BEIJING · INWA SPACE</span>
+      </div>
+    </section>
+
+    <section class="job-details section-pad" aria-label="岗位介绍">
+      <div class="job-section-label">
+        <span>01</span>
+        <p class="eyebrow">THE ROLE</p>
+      </div>
+      <div class="job-detail-content">
+        <section aria-labelledby="responsibilities-title">
+          <h2 id="responsibilities-title">职责描述 <span>RESPONSIBILITIES</span></h2>
+          <ul>
+            {job.responsibilities.map((responsibility) => <li>{responsibility}</li>)}
+          </ul>
+        </section>
+        <section aria-labelledby="requirements-title">
+          <h2 id="requirements-title">职位要求 <span>REQUIREMENTS</span></h2>
+          <ul>
+            {job.requirements.map((requirement) => <li>{requirement}</li>)}
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <section class="job-apply section-pad" aria-labelledby="job-apply-title">
+      <p class="eyebrow">SOUND LIKE YOU?</p>
+      <div class="job-apply-content">
+        <h2 id="job-apply-title">期待认识你。</h2>
+        <p>请在邮件中注明应聘职位，并附上个人作品或有效链接。</p>
+        <a href={`mailto:${recruitmentEmail}?subject=${subject}`}>
+          发送简历与作品 <span>{recruitmentEmail} ↗</span>
+        </a>
+        <a class="job-back-link" href={`${base}contact/#jobs-title`}>← 返回招聘信息</a>
+      </div>
+    </section>
+  </main>
+  <SiteFooter />
+</SiteLayout>

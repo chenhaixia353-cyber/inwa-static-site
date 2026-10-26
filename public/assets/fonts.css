@@ -1,0 +1,23 @@
+@font-face {
+  font-display: swap;
+  font-family: Gotham;
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/gotham-book.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Gotham;
+  font-style: normal;
+  font-weight: 500;
+  src: url('./fonts/gotham-medium.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Gotham;
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/gotham-bold.woff') format('woff');
+}

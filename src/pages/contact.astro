@@ -1,0 +1,111 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { jobs, recruitmentEmail } from '../data/jobs';
+
+const socialLinks = [
+  {
+    name: 'WeChat',
+    href: 'https://mp.weixin.qq.com/s/M_vuvR_NfLQCc8NyhlJ3Bg',
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/inwadesignstudio/?igshid=630j1wht06r3',
+  },
+  {
+    name: 'Behance',
+    href: 'https://www.behance.net/566544828d16',
+  },
+  {
+    name: '小红书',
+    href: 'https://www.xiaohongshu.com/user/profile/6034dc71000000000100a4d6?channel_type=web_note_detail_r10&xsec_token=ABIb9qj1iUKQj7gyZzaylcRio0oAIWJAEQ88Y2No1bUas=&xsec_source=pc_note&wechatWid=8016ae9c7e3925dd1e417b966bfc844d&wechatOrigin=menu',
+  },
+];
+
+const base = import.meta.env.BASE_URL;
+const recruitmentSubject = encodeURIComponent('应聘 INWA SPACE 职位');
+---
+
+<SiteLayout
+  title="Contact INWA SPACE — 联系我们"
+  description="联系 INWA 因未设计，了解北京办公室地址、电话、邮箱与社交媒体。"
+>
+  <SiteHeader />
+  <main id="top" class="contact-page">
+    <section class="contact-hero section-pad" aria-labelledby="contact-title">
+      <p class="eyebrow">INWA SPACE <span>/</span> CONTACT</p>
+      <h1 id="contact-title">LET’S TALK<span>.</span></h1>
+      <div class="contact-hero-bottom">
+        <p>好的合作，从一次真诚的交流开始。</p>
+        <span>BEIJING · CHINA</span>
+      </div>
+    </section>
+
+    <section class="contact-details section-pad" aria-label="Contact details">
+      <div class="contact-main">
+        <div class="contact-section-label">
+          <span>01</span>
+          <p class="eyebrow">GET IN TOUCH</p>
+        </div>
+        <div class="contact-info">
+          <h2>期待听到你的想法。</h2>
+          <a class="contact-email" href="mailto:inwadesign@inwa.top">
+            inwadesign@inwa.top <span aria-hidden="true">↗</span>
+          </a>
+          <a class="contact-phone" href="tel:+8618611157743">+86 186 1115 7743</a>
+
+          <div class="social-links" aria-label="Social media">
+            {socialLinks.map(({ name, href }) => (
+              <a href={href} target="_blank" rel="noreferrer">{name} <span aria-hidden="true">↗</span></a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-address-block">
+        <div class="contact-section-label">
+          <span>02</span>
+          <p class="eyebrow">VISIT OUR STUDIO</p>
+        </div>
+        <div class="contact-address">
+          <h2>INWA SPACE · BEIJING</h2>
+          <p>北京市东城区东四南大街15号<br />雪莲亮点文创园308室</p>
+          <p class="address-en">Room 308, XLLD Creative Park,<br />No. 15 Dongsi South Street,<br />Dongcheng District, Beijing 100010</p>
+          <a
+            class="map-link"
+            href="https://maps.apple.com/?q=Room%20308%2C%20XLLD%20Creative%20Park%2C%20No.%2015%20Dongsi%20South%20Street%2C%20Beijing"
+            target="_blank"
+            rel="noreferrer"
+          >OPEN MAP <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-jobs section-pad" aria-labelledby="jobs-title">
+      <div class="contact-section-label">
+        <span>03</span>
+        <p class="eyebrow">WORK WITH US</p>
+      </div>
+      <div class="jobs-content">
+        <h2 id="jobs-title">加入 INWA SPACE。</h2>
+        <p>如果你相信好的设计来自好奇、协作与持续探索，欢迎与我们联系。</p>
+        <ul class="job-list">
+          {jobs.map((role) => (
+            <li>
+              <a href={`${base}job/${role.slug}/`}>
+                <span>{role.title}</span>
+                <span>{role.displayTitleEn}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a class="jobs-email" href={`mailto:${recruitmentEmail}?subject=${recruitmentSubject}`}>
+          投递简历 <span>{recruitmentEmail} ↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <SiteFooter />
+</SiteLayout>

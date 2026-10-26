@@ -1,0 +1,54 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  titleEn: string;
+  category: string;
+  sector: string;
+  services: string[];
+  client: string;
+  cover: string;
+  alt: string;
+  order: number;
+  featured: boolean;
+}
+
+const {
+  slug,
+  title,
+  titleEn,
+  category,
+  sector,
+  services = [],
+  client,
+  cover,
+  alt,
+  order,
+  featured,
+} = Astro.props;
+const base = import.meta.env.BASE_URL;
+const imagePath = `${base}${cover.replace(/^\/+/, '')}`;
+---
+
+<article
+  class="case-card"
+  data-client={client}
+  data-sector={sector}
+  data-services={services.join('|')}
+  data-featured={featured}
+  hidden={!featured}
+>
+  <a class="case-link" href={`${base}work/${slug}/`} aria-label={`${title} — ${titleEn}`}>
+    <div class="case-image-wrap">
+      <img src={imagePath} alt={alt} loading={order < 3 ? 'eager' : 'lazy'} decoding="async" />
+      <span class="case-arrow" aria-hidden="true">↗</span>
+    </div>
+    <div class="case-caption">
+      <div>
+        <h3>{titleEn} <span>{client}</span></h3>
+        <p>{title}</p>
+      </div>
+      <span class="case-category">{category}</span>
+    </div>
+  </a>
+</article>

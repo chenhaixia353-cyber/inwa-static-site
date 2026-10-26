@@ -1,0 +1,106 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const services = [
+  {
+    number: '01',
+    title: '品牌与策略',
+    titleEn: 'BRAND & STRATEGY',
+    details: '品牌策略与识别系统、品牌活动、网站设计',
+  },
+  {
+    number: '02',
+    title: '空间与展览',
+    titleEn: 'SPACE & EXHIBITION',
+    details: '展览策划与空间设计、展览视觉、导示系统',
+  },
+  {
+    number: '03',
+    title: '多媒体与体验',
+    titleEn: 'MEDIA & EXPERIENCE',
+    details: '品牌动态、多媒体可视化、新媒体交互与体验、影像与灯光艺术',
+  },
+  {
+    number: '04',
+    title: '内容与物件',
+    titleEn: 'CONTENT & OBJECTS',
+    details: 'IP 形象与插画、书籍设计、产品与衍生品、包装设计',
+  },
+];
+---
+
+<SiteLayout
+  title="About INWA SPACE — 因未设计"
+  description="了解 INWA 因未设计：一家从内容出发、以文化与艺术为创作原动力的独立设计机构。"
+  bodyClass="page-about"
+>
+  <SiteHeader />
+  <main id="top" class="about-page">
+    <section class="about-hero section-pad" aria-labelledby="about-title">
+      <p class="eyebrow">INWA SPACE <span>/</span> ABOUT US</p>
+      <h1 id="about-title">DESIGN<br />WITH MEANING<span>.</span></h1>
+      <div class="about-hero-bottom">
+        <p>因内容而生，以设计回应当下。</p>
+        <span>BEIJING · EST. 2010</span>
+      </div>
+    </section>
+
+    <section class="about-intro section-pad" aria-labelledby="intro-title">
+      <div class="about-section-label">
+        <span>01</span>
+        <p class="eyebrow">WHO WE ARE</p>
+      </div>
+      <div class="about-intro-copy">
+        <h2 id="intro-title">让文化与创意，<br />成为新的可能。</h2>
+        <p>
+          INWA 因未是一家从内容出发的独立设计机构，以文化与艺术为创作原动力，通过创意和设计激发价值潜力，打破学科边界，探索有温度、有趣味的当代表达。
+        </p>
+        <p>
+          我们为品牌、展览与活动提供策略和设计服务。从深入理解内容开始，以创新设计和战略思维展开创作，再以专业协作推动想法落地。
+        </p>
+        <p>
+          设计实践与实验探索彼此启发。我们热爱生命、拥抱变化，认真面对当下，也真诚回应未来。
+        </p>
+      </div>
+    </section>
+
+    <section class="about-services section-pad" aria-labelledby="services-title">
+      <div class="about-section-label">
+        <span>02</span>
+        <p class="eyebrow">WHAT WE DO</p>
+      </div>
+      <div class="about-services-content">
+        <h2 id="services-title">从策略到体验，<br />让想法走进真实世界。</h2>
+        <div class="service-list">
+          {services.map((service) => (
+            <article class="service-row">
+              <span class="service-number">{service.number}</span>
+              <h3>{service.title}</h3>
+              <p class="service-title-en">{service.titleEn}</p>
+              <p class="service-details">{service.details}</p>
+              <span class="service-arrow" aria-hidden="true">↗</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="about-approach section-pad" aria-labelledby="approach-title">
+      <p class="eyebrow">HOW WE THINK</p>
+      <h2 id="approach-title">内容是起点。<br />协作是方法。<br />有意义的改变，是方向。</h2>
+      <p class="approach-note">
+        INWA SPACE 的创作团队来自海内外专业设计院校，拥有跨学科、跨地域的协作经验。我们与客户、创作者和合作伙伴并肩工作，让每个项目都从真实的问题与具体的人出发。
+      </p>
+    </section>
+
+    <section class="about-cta section-pad">
+      <p class="eyebrow">A GOOD PLACE TO START</p>
+      <a href={`${base}#work`}>看看我们做过的项目 <span>↗</span></a>
+    </section>
+  </main>
+  <SiteFooter />
+</SiteLayout>

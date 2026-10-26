@@ -16,6 +16,7 @@ const cases = defineCollection({
     order: z.number().default(100),
     client: z.string(),
     year: z.string().optional(),
+    descriptionEn: z.string(),
   }),
 });
 

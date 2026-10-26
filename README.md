@@ -27,6 +27,12 @@ npm install
 npm run dev
 ```
 
+Run Astro diagnostics and TypeScript checks:
+
+```sh
+npm run check
+```
+
 Run the static production build:
 
 ```sh
@@ -49,13 +55,15 @@ npm run preview
      - 品牌识别
      - 空间设计
    client: 客户名称
+   descriptionEn: |
+     English project description. Separate paragraphs with a blank line.
    cover: /assets/cases/<case-id>/cover.jpg
    alt: 封面图片的中文说明
    home: true
    order: 9
    ---
 
-   在此补充项目介绍。
+   在此补充中文项目介绍。使用空行分段；英文介绍写在 `descriptionEn` 中。
    ```
 
 3. Use a unique, URL-safe case ID. `order` controls the homepage order. `sector` and `services` supply filter options. Set `home: false` to keep the case in the detail routes and All filter, but omit it from Featured.

@@ -1261,21 +1261,19 @@ input:focus-visible {
 
 .project-content {
   display: grid;
-  grid-template-columns: minmax(130px, 0.6fr) minmax(0, 1.4fr);
-  gap: 40px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 5vw, 72px);
   padding: 25px 0 55px;
-}
-
-.project-category {
-  margin: 0;
-  color: #777;
-  font-size: 12px;
 }
 
 .prose {
   max-width: 720px;
   font-size: 16px;
   line-height: 1.8;
+}
+
+.project-description {
+  min-width: 0;
 }
 
 .prose > :first-child {
@@ -1560,8 +1558,8 @@ input:focus-visible {
 
   .project-content {
     grid-template-columns: 1fr;
-    gap: 15px;
-    padding-bottom: 24px;
+    gap: 28px;
+    padding-bottom: 30px;
   }
 
   .project-information {

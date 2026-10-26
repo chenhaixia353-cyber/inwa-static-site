@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 
 const { entry, galleryFiles } = Astro.props;
 const { Content } = await render(entry);
-const { title, titleEn, category, cover, alt, client, year } = entry.data;
+const { title, titleEn, category, cover, alt, client, year, descriptionEn } = entry.data;
 const base = import.meta.env.BASE_URL;
 const detailImagePath = galleryFiles[0]
   ? `${base}assets/cases/${entry.id}/${galleryFiles[0]}`
@@ -52,8 +52,10 @@ const galleryImages = galleryFiles.slice(1).map((file: string, index: number) =>
         <span>{client}</span>
       </div>
       <div class="project-content">
-        <p class="project-category">{category}</p>
-        <div class="prose"><Content /></div>
+        <div class="project-description prose" lang="zh-CN"><Content /></div>
+        <div class="project-description project-description-en prose" lang="en">
+          {descriptionEn.split(/\n\s*\n/).filter(Boolean).map((paragraph) => <p>{paragraph}</p>)}
+        </div>
       </div>
     </section>
     {galleryImages.length > 0 && (

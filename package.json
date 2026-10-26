@@ -6,9 +6,15 @@
   "scripts": {
     "dev": "astro dev --host 0.0.0.0 --port 4321",
     "build": "astro build",
+    "check": "astro check",
     "preview": "astro preview --host 0.0.0.0 --port 4173"
   },
   "dependencies": {
     "astro": "^5.11.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@types/node": "^26.6.5",
+    "typescript": "^5.8.3"
   }
 }

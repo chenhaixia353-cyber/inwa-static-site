@@ -65,14 +65,14 @@ The generated case URL is `/work/<case-id>/`.
 
 ## GitHub Pages deployment
 
-The included Actions workflow (`.github/workflows/deploy-pages.yml`) builds and publishes `dist` on every push to `main`. In repository settings, enable **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+The included Actions workflow (`.github/workflows/astro.yml`) builds and publishes `dist` on every push to `main`. In repository settings, enable **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
-The build base path is controlled by the `PAGES_BASE_PATH` environment variable in the workflow, which `astro.config.mjs` reads:
+The workflow calls `actions/configure-pages`, which reads the Pages settings and passes the correct `--site` and `--base` to `astro build`. The base path therefore follows the Pages configuration automatically:
 
-- **Project URL** (`https://chenhaixia353-cyber.github.io/inwa-static-site/`) — set `PAGES_BASE_PATH: inwa-static-site` in the workflow. This is the current setting.
-- **Custom domain** (`https://www.inwa.top/`) — remove `PAGES_BASE_PATH` from the workflow and add a `public/CNAME` file containing `www.inwa.top`, then point the domain at GitHub Pages with a `CNAME` DNS record (`www` → `chenhaixia353-cyber.github.io`, apex → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`).
+- **Project URL** (`https://chenhaixia353-cyber.github.io/inwa-static-site/`) — the current setting, no extra configuration needed.
+- **Custom domain** (`https://www.inwa.top/`) — set the custom domain in **Settings → Pages**, add a `public/CNAME` file containing `www.inwa.top`, and point the domain at GitHub Pages with a `CNAME` DNS record (`www` → `chenhaixia353-cyber.github.io`, apex → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`).
 
-Only one of the two can be active at a time, because the base path is baked into the built HTML.
+For local previews of a subpath build, set `PAGES_BASE_PATH` before `npm run build`; `astro.config.mjs` reads it as the base path.
 
 ## Media notes
 

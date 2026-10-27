@@ -9,7 +9,12 @@ const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.dat
 const featuredCount = cases.filter(({ data }) => data.home).length;
 ---
 
-<SiteLayout bodyClass="page-ideas">
+<SiteLayout
+  title="INWA SPACE 因未设计｜北京品牌与空间设计机构"
+  description="INWA 因未设计是位于北京的独立设计机构，专注品牌策略与识别、展览视觉、文化空间和体验设计。"
+  canonicalPath=""
+  bodyClass="page-ideas"
+>
   <SiteHeader />
   <main id="top">
     <section class="archive-header" aria-labelledby="archive-title">

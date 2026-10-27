@@ -16,6 +16,7 @@ const base = import.meta.env.BASE_URL;
 <SiteLayout
   title={`${job.title} ${job.titleEn} — INWA SPACE 招聘`}
   description={`INWA SPACE 招聘${job.title}。查看岗位职责和职位要求，并发送作品集与简历。`}
+  canonicalPath={`job/${job.slug}/`}
   bodyClass="page-careers"
 >
   <SiteHeader />

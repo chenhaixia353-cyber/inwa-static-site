@@ -18,6 +18,31 @@ Only media selected for this site is copied into `public/assets/`; the 5.4 GB Wo
 
 The About and Contact pages and their navigation links are hosted locally.
 
+## SEO
+
+The canonical site URL is `https://chenhaixia353-cyber.github.io/inwa-static-site/`.
+The build generates `sitemap.xml` from the homepage, studio pages, job listings, and
+project collection. `robots.txt` points crawlers to that sitemap. Page titles,
+descriptions, canonical URLs, social-sharing metadata, and Organization structured
+data are rendered into each page.
+
+Use descriptive, natural-language phrases in visible page titles, headings, project
+copy, and image alt text. Prioritize a small number of topic clusters:
+
+- Studio and location: INWA SPACE, 因未设计, 北京独立设计机构, Beijing design studio.
+- Services: 北京品牌设计, 品牌策略与识别, 展览视觉设计, 文化空间设计, 导视系统设计,
+  品牌体验设计; branding, exhibition design, cultural space design.
+- Case-specific searches: 高德地图办公空间文化展陈设计, 济宁市美术馆品牌与导视设计,
+  故宫玻璃展览视觉设计, and the matching English project names.
+
+Use the studio/location terms on the homepage and About page, service terms on About
+and Contact, and specific client/project terms on each case page. Avoid keyword
+stuffing and `meta keywords`; major search engines do not use that tag for ranking.
+Google's search-result sitelinks (like those in the reference image) are selected
+automatically; a sitemap helps discovery and crawling but cannot request specific
+sitelinks. After deployment, verify the site in Google Search Console and Baidu
+Search Resource Platform, submit the sitemap URL, and monitor indexing reports.
+
 ## Local development
 
 Requires Node.js 22.12 or newer.

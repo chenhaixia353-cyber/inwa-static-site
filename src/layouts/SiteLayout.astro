@@ -4,15 +4,47 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
+  socialImage?: string;
   bodyClass?: string;
 }
 
 const {
   title = 'INWA SPACE — Independent Creative Studio',
-  description = 'INWA SPACE creates visual identities, cultural spaces and brand experiences.',
+  description = 'INWA 因未设计是位于北京的独立设计机构，提供品牌策略与识别、展览视觉、文化空间及体验设计服务。',
+  canonicalPath = '',
+  socialImage = '/assets/cases/space-of-amap/cover.jpg',
   bodyClass = '',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const canonicalUrl = Astro.site
+  ? new URL(`${base}${canonicalPath.replace(/^\/+/, '')}`, Astro.site).href
+  : undefined;
+const socialImageUrl = Astro.site
+  ? new URL(`${base}${socialImage.replace(/^\/+/, '')}`, Astro.site).href
+  : undefined;
+const siteUrl = Astro.site ? new URL(base, Astro.site).href : undefined;
+const organizationSchema = siteUrl
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      '@id': `${siteUrl}#organization`,
+      name: 'INWA SPACE',
+      alternateName: '因未设计',
+      url: siteUrl,
+      description: '位于北京的独立设计机构，提供品牌策略与识别、展览视觉、文化空间及体验设计服务。',
+      email: 'inwadesign@inwa.top',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Beijing',
+        addressCountry: 'CN',
+      },
+      sameAs: [
+        'https://www.instagram.com/inwadesignstudio/',
+        'https://www.behance.net/566544828d16',
+      ],
+    }
+  : undefined;
 ---
 
 <!doctype html>
@@ -22,8 +54,23 @@ const base = import.meta.env.BASE_URL;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f8f8f6" />
     <meta name="description" content={description} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="INWA SPACE" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
     <link rel="icon" href={`${base}favicon.ico`} sizes="any" />
     <title>{title}</title>
+    {organizationSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    )}
   </head>
   <body class={bodyClass}>
     <slot />

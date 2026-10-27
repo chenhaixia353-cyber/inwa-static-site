@@ -26,6 +26,17 @@ const { entry, galleryFiles } = Astro.props;
 const { Content } = await render(entry);
 const { title, titleEn, category, cover, alt, client, year, descriptionEn } = entry.data;
 const base = import.meta.env.BASE_URL;
+const descriptionExcerpt = (entry.body ?? '')
+  .replace(/!\[.*?\]\(.*?\)/g, '')
+  .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+  .replace(/[`*_>#]/g, '')
+  .replace(/\s+/g, ' ')
+  .trim();
+const fullProjectDescription = `${title}，${category}设计案例。${descriptionExcerpt}`;
+const projectDescription =
+  fullProjectDescription.length > 120
+    ? `${fullProjectDescription.slice(0, 117).trimEnd()}…`
+    : fullProjectDescription;
 const detailImagePath = galleryFiles[0]
   ? `${base}assets/cases/${entry.id}/${galleryFiles[0]}`
   : `${base}${cover.replace(/^\/+/, '')}`;
@@ -35,7 +46,12 @@ const galleryImages = galleryFiles.slice(1).map((file: string, index: number) =>
 }));
 ---
 
-<SiteLayout title={`${title} — INWA SPACE`} description={`${title}，${titleEn}。INWA SPACE 项目案例。`}>
+<SiteLayout
+  title={`${title}｜${titleEn} — INWA SPACE 因未设计`}
+  description={projectDescription}
+  canonicalPath={`work/${entry.id}/`}
+  socialImage={cover}
+>
   <SiteHeader />
   <main id="top" class="project-page">
     <figure class="project-cover">

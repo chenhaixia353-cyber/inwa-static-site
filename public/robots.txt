@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /inwa-static-site/
+
+Sitemap: https://chenhaixia353-cyber.github.io/inwa-static-site/sitemap.xml

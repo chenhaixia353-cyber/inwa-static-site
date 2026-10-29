@@ -116,3 +116,14 @@ Use optimized project-specific assets rather than copying the full WordPress upl
 31 projects were migrated from the WordPress site in one batch. Their copy comes from the original `work` posts (Chinese body text and the `txt_en` field); the eight projects that had no body text on the live site (阿里云云谷、龙城CC、净地良材、净地良材产品&空间) have copy written from the project scope, and the four cases missing only the English body (阿里巴巴访客中心、盒马鲜生昆明店、「历史与创想」展) were translated from the Chinese. `year` is only set where the original text states one, and should be filled in for the remaining cases.
 
 Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>/quality/80/interlace/1`, so JPEGs and PNGs are resized copies rather than the multi-megabyte originals. Animated GIFs were re-encoded as animated WebP via `imageMogr2/format/webp`; three GIFs that the CDN refused to process (too many frames) are still stored as GIF. All 31 cases use `home: false`, so they appear under the **All** filter and their own detail routes without changing the homepage Featured selection.
+
+### Placeholder cases
+
+24 further projects exist only as page skeletons: 23 have no copy and no media anywhere in the WordPress source, and 百年江丰文献展 (Discover Jiang Feng) was an unpublished draft whose 20 photographs were still on the CDN. The 23 empty pages point at the shared `public/assets/cases/_placeholder.svg` and carry a one-line note in place of the project description.
+
+To fill one in:
+
+1. Put the images in `public/assets/cases/<case-id>/` as `cover.<ext>` plus `gallery-01.<ext>`, `gallery-02.<ext>`, and so on.
+2. Update the `cover:` line in `src/content/cases/<case-id>.md` to `/assets/cases/<case-id>/cover.<ext>`, and replace the Chinese body and the `descriptionEn` block with the real copy.
+
+Until then the page keeps its placeholder image, and the homepage card in the **All** filter shows the same placeholder. The English titles, clients, categories, and sectors of the 23 empty pages are provisional and should be corrected against the studio's own naming.

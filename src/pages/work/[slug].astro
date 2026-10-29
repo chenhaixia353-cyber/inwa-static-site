@@ -10,7 +10,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 export async function getStaticPaths() {
   const caseAssetsDirectory = fileURLToPath(new URL('../../../public/assets/cases', import.meta.url));
   const cases = await getCollection('cases');
-  return cases.map((entry) => {
+  return cases.filter(({ data }) => !data.placeholder).map((entry) => {
     const galleryDirectory = join(caseAssetsDirectory, entry.id);
     const galleryFiles = existsSync(galleryDirectory)
       ? readdirSync(galleryDirectory)
@@ -25,6 +25,9 @@ export async function getStaticPaths() {
 const { entry, galleryFiles } = Astro.props;
 const { Content } = await render(entry);
 const { title, titleEn, category, cover, alt, client, year, descriptionEn } = entry.data;
+if (!titleEn || !category || !cover || !alt || !client || !descriptionEn) {
+  throw new Error(`Case "${entry.id}" is missing required project-detail fields.`);
+}
 const base = import.meta.env.BASE_URL;
 const descriptionExcerpt = (entry.body ?? '')
   .replace(/!\[.*?\]\(.*?\)/g, '')

@@ -1,18 +1,6 @@
 ---
-title: 阿里北扩空间设计
-titleEn: SPACE OF ALIBABA NORTH
-category: 文化空间
-sector: 科技与数码
-services:
-  - 空间体验
-  - 品牌文化
-client: 阿里巴巴集团
-descriptionEn: |
-  Full project information is being compiled. INWA DESIGN will add the project background, the design work and the image archive here.
-cover: /assets/cases/_placeholder.svg
-alt: 阿里北扩空间设计项目
+title: 阿里北扩
+placeholder: true
 home: false
 order: 42
 ---
-
-该项目的完整资料正在整理中。INWA DESIGN 因未设计会在此补充项目背景、设计内容与图片档案。

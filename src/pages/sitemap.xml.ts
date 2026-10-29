@@ -12,7 +12,9 @@ export async function GET({ site }: { site: URL | undefined }) {
     'about/',
     'contact/',
     ...jobs.map((job) => `job/${job.slug}/`),
-    ...cases.map((entry) => `work/${entry.id}/`),
+    ...cases
+      .filter(({ data }) => !data.placeholder)
+      .map((entry) => `work/${entry.id}/`),
   ];
   const base = import.meta.env.BASE_URL;
   const urls = routes

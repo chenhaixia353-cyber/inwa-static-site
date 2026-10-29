@@ -7,6 +7,9 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 
 const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
 const featuredCount = cases.filter(({ data }) => data.home).length;
+const initiallyVisible = new Set(
+  cases.filter(({ data }) => data.home).slice(0, 4).map(({ id }) => id),
+);
 ---
 
 <SiteLayout
@@ -56,9 +59,12 @@ const featuredCount = cases.filter(({ data }) => data.home).length;
             alt={data.alt}
             order={data.order}
             featured={data.home}
+            placeholder={data.placeholder}
+            visibleInitially={initiallyVisible.has(id)}
           />
         ))}
       </div>
+      <p class="case-load-sentinel" id="case-load-sentinel" role="status" aria-live="polite"></p>
       <p class="empty-state" hidden>No projects found.</p>
     </section>
 
@@ -76,11 +82,16 @@ const featuredCount = cases.filter(({ data }) => data.home).length;
   const optionsPanel = document.querySelector<HTMLElement>('#filter-options');
   const visibleCount = document.querySelector<HTMLElement>('#visible-count');
   const emptyState = document.querySelector<HTMLElement>('.empty-state');
+  const loadSentinel = document.querySelector<HTMLElement>('#case-load-sentinel');
   const searchInput = document.querySelector<HTMLInputElement>('#case-search');
   const phraseNodes = Array.from(document.querySelectorAll<HTMLElement>('.phrase'));
   const terms = new Map<string, string>();
+  const pageSize = 4;
   let activeMode = 'featured';
   let phraseIndex = 0;
+  let loadedCount = pageSize;
+  let matchingCards: HTMLElement[] = [];
+  let loadObserver: IntersectionObserver | undefined;
 
   function setActiveMode(mode: string) {
     activeMode = mode;
@@ -99,7 +110,7 @@ const featuredCount = cases.filter(({ data }) => data.home).length;
         mode === 'service'
           ? (card.dataset.services ?? '').split('|').filter(Boolean)
           : [card.dataset[mode] ?? ''],
-      );
+      ).filter(Boolean);
       const uniqueValues = [...new Set(values)].sort((a, b) => a.localeCompare(b, 'zh-CN'));
       const addOption = (label: string, value: string) => {
         const button = document.createElement('button');
@@ -127,11 +138,11 @@ const featuredCount = cases.filter(({ data }) => data.home).length;
     updateCards();
   }
 
-  function updateCards() {
+  function updateCards(reset = true) {
+    if (reset) loadedCount = pageSize;
     const query = searchInput?.value.trim().toLocaleLowerCase() ?? '';
-    let count = 0;
-    cards.forEach((card) => {
-      const searchableText = `${card.innerText} ${card.dataset.client} ${card.dataset.sector} ${card.dataset.services}`.toLocaleLowerCase();
+    matchingCards = cards.filter((card) => {
+      const searchableText = `${card.textContent} ${card.dataset.client} ${card.dataset.sector} ${card.dataset.services}`.toLocaleLowerCase();
       const matchesMode =
         activeMode === 'featured'
           ? card.dataset.featured === 'true'
@@ -142,18 +153,46 @@ const featuredCount = cases.filter(({ data }) => data.home).length;
               : activeMode === 'service'
                 ? !terms.has('service') || (card.dataset.services ?? '').split('|').includes(terms.get('service') ?? '')
                 : true;
-      const visible = matchesMode && (!query || searchableText.toLocaleLowerCase().includes(query));
-      card.hidden = !visible;
-      if (visible) count += 1;
+      return matchesMode && (!query || searchableText.includes(query));
     });
-    if (visibleCount) visibleCount.textContent = String(count).padStart(2, '0');
-    if (emptyState) emptyState.hidden = count > 0;
+    if (!loadObserver) loadedCount = matchingCards.length;
+
+    const visibleCards = new Set(matchingCards.slice(0, loadedCount));
+    cards.forEach((card) => {
+      card.hidden = !visibleCards.has(card);
+    });
+
+    if (visibleCount) visibleCount.textContent = String(matchingCards.length).padStart(2, '0');
+    if (emptyState) emptyState.hidden = matchingCards.length > 0;
+    if (loadSentinel) {
+      const hasMore = loadedCount < matchingCards.length;
+      loadSentinel.hidden = matchingCards.length === 0;
+      loadSentinel.textContent = hasMore
+        ? `已加载 ${Math.min(loadedCount, matchingCards.length)} / ${matchingCards.length} 个项目，继续滚动查看更多`
+        : matchingCards.length > 0
+          ? `已显示全部 ${matchingCards.length} 个项目`
+          : '';
+      loadObserver?.unobserve(loadSentinel);
+      if (hasMore) loadObserver?.observe(loadSentinel);
+    }
+  }
+
+  if (loadSentinel && 'IntersectionObserver' in window) {
+    loadObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting && loadedCount < matchingCards.length) {
+          loadedCount = Math.min(loadedCount + pageSize, matchingCards.length);
+          updateCards(false);
+        }
+      },
+      { rootMargin: '200px 0px' },
+    );
   }
 
   modes.forEach((button) => {
     button.addEventListener('click', () => setActiveMode(button.dataset.filterMode ?? 'featured'));
   });
-  searchInput?.addEventListener('input', updateCards);
+  searchInput?.addEventListener('input', () => updateCards());
 
   const initialQuery = new URLSearchParams(window.location.search).get('q')?.trim() ?? '';
   if (searchInput && initialQuery) {

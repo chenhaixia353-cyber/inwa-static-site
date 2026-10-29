@@ -12,7 +12,7 @@ Static Astro portfolio for INWA SPACE, using the authorized 2x4.org homepage as 
 | Careers | `/job/{role-id}/` | Static job descriptions and application links |
 | Project detail | `/work/{case-id}/` | Generated from each case Markdown file |
 
-The homepage includes a rotating studio statement, searchable project cards, and filters for featured work, client, sector, service, and all projects. Project details are generated from the same Markdown content source.
+The homepage includes a rotating studio statement, searchable project cards, and filters for featured work, client, sector, service, and all projects. Cases appear four at a time; scrolling to the end of the visible list loads the next batch, and changing a filter or search starts again from the first batch. Project detail pages are generated from the same Markdown content source.
 
 Only media selected for this site is copied into `public/assets/`; the 5.4 GB WordPress uploads directory is not part of this project.
 
@@ -117,13 +117,14 @@ Use optimized project-specific assets rather than copying the full WordPress upl
 
 Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>/quality/80/interlace/1`, so JPEGs and PNGs are resized copies rather than the multi-megabyte originals. Animated GIFs were re-encoded as animated WebP via `imageMogr2/format/webp`; three GIFs that the CDN refused to process (too many frames) are still stored as GIF. All 31 cases use `home: false`, so they appear under the **All** filter and their own detail routes without changing the homepage Featured selection.
 
-### Placeholder cases
+### Title-only cases
 
-24 further projects exist only as page skeletons: 23 have no copy and no media anywhere in the WordPress source, and 百年江丰文献展 (Discover Jiang Feng) was an unpublished draft whose 20 photographs were still on the CDN. The 23 empty pages point at the shared `public/assets/cases/_placeholder.svg` and carry a one-line note in place of the project description.
+24 projects without confirmed public copy or imagery are represented by their Chinese names only. Their Markdown entries use `placeholder: true`; the cards appear in the **All** filter without images or links, and no detail routes or sitemap URLs are generated. The unpublished 百年江丰文献展 photographs are archived under `src/content/case-drafts/discover-jiang-feng/` and are not included in the public build.
 
-To fill one in:
+To complete a placeholder when approved source material is available:
 
-1. Put the images in `public/assets/cases/<case-id>/` as `cover.<ext>` plus `gallery-01.<ext>`, `gallery-02.<ext>`, and so on.
-2. Update the `cover:` line in `src/content/cases/<case-id>.md` to `/assets/cases/<case-id>/cover.<ext>`, and replace the Chinese body and the `descriptionEn` block with the real copy.
+1. Add the cover and ordered gallery images under `public/assets/cases/<case-id>/`.
+2. Replace the title-only frontmatter with the full case fields shown in **Add a case** and remove `placeholder: true`.
+3. Add the verified Chinese and English project descriptions to the Markdown file.
 
-Until then the page keeps its placeholder image, and the homepage card in the **All** filter shows the same placeholder. The English titles, clients, categories, and sectors of the 23 empty pages are provisional and should be corrected against the studio's own naming.
+Astro will then generate its detail route and include it in the sitemap. Keep `home: false` until the project is ready for the Featured selection.

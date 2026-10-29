@@ -2,15 +2,17 @@
 interface Props {
   slug: string;
   title: string;
-  titleEn: string;
-  category: string;
-  sector: string;
-  services: string[];
-  client: string;
-  cover: string;
-  alt: string;
+  titleEn?: string;
+  category?: string;
+  sector?: string;
+  services?: string[];
+  client?: string;
+  cover?: string;
+  alt?: string;
   order: number;
   featured: boolean;
+  placeholder?: boolean;
+  visibleInitially: boolean;
 }
 
 const {
@@ -25,30 +27,38 @@ const {
   alt,
   order,
   featured,
+  placeholder = false,
+  visibleInitially,
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const imagePath = `${base}${cover.replace(/^\/+/, '')}`;
+const imagePath = cover ? `${base}${cover.replace(/^\/+/, '')}` : '';
 ---
 
 <article
-  class="case-card"
-  data-client={client}
-  data-sector={sector}
+  class:list={['case-card', { 'case-card-placeholder': placeholder }]}
+  data-client={client ?? ''}
+  data-sector={sector ?? ''}
   data-services={services.join('|')}
   data-featured={featured}
-  hidden={!featured}
+  hidden={!visibleInitially}
 >
-  <a class="case-link" href={`${base}work/${slug}/`} aria-label={`${title} — ${titleEn}`}>
-    <div class="case-image-wrap">
-      <img src={imagePath} alt={alt} loading={order < 3 ? 'eager' : 'lazy'} decoding="async" />
-      <span class="case-arrow" aria-hidden="true">↗</span>
+  {placeholder ? (
+    <div class="case-placeholder-caption">
+      <h3>{title}</h3>
     </div>
-    <div class="case-caption">
-      <div>
-        <h3>{titleEn} <span>{client}</span></h3>
-        <p>{title}</p>
+  ) : (
+    <a class="case-link" href={`${base}work/${slug}/`} aria-label={`${title} — ${titleEn}`}>
+      <div class="case-image-wrap">
+        <img src={imagePath} alt={alt} loading={order < 3 ? 'eager' : 'lazy'} decoding="async" />
+        <span class="case-arrow" aria-hidden="true">↗</span>
       </div>
-      <span class="case-category">{category}</span>
-    </div>
-  </a>
+      <div class="case-caption">
+        <div>
+          <h3>{titleEn} <span>{client}</span></h3>
+          <p>{title}</p>
+        </div>
+        <span class="case-category">{category}</span>
+      </div>
+    </a>
+  )}
 </article>

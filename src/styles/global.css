@@ -442,6 +442,22 @@ input:focus-visible {
   min-width: 0;
 }
 
+.case-card-placeholder {
+  border-top: 1px solid #d5d5d5;
+}
+
+.case-placeholder-caption {
+  padding-top: 13px;
+}
+
+.case-placeholder-caption h3 {
+  margin: 0;
+  font-size: clamp(15px, 1.35vw, 19px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+}
+
 .case-link {
   display: block;
 }
@@ -529,6 +545,15 @@ input:focus-visible {
   margin: 48px 0 0;
   color: #777;
   font-size: 14px;
+}
+
+.case-load-sentinel {
+  margin: 36px 0 0;
+  padding: 14px 0;
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-align: center;
 }
 
 .studio-strip {

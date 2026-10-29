@@ -12,7 +12,7 @@ Static Astro portfolio for INWA SPACE, using the authorized 2x4.org homepage as 
 | Careers | `/job/{role-id}/` | Static job descriptions and application links |
 | Project detail | `/work/{case-id}/` | Generated from each case Markdown file |
 
-The homepage includes a rotating studio statement, searchable project cards, and filters for featured work, client, sector, service, and all projects. Cases appear four at a time; scrolling to the end of the visible list loads the next batch, and changing a filter or search starts again from the first batch. Project detail pages are generated from the same Markdown content source.
+The homepage includes a rotating studio statement, searchable project cards, and filters for featured work, client, sector, service, and all projects. The **All** filter is the default view; Featured narrows the grid to the eight projects marked `home: true`. Cases appear four at a time; scrolling to the end of the visible list loads the next batch, and changing a filter or search starts again from the first batch. Project detail pages are generated from the same Markdown content source.
 
 Only media selected for this site is copied into `public/assets/`; the 5.4 GB WordPress uploads directory is not part of this project.
 

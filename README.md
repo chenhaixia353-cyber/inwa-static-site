@@ -110,3 +110,9 @@ For local previews of a subpath build, set `PAGES_BASE_PATH` before `npm run bui
 ## Media notes
 
 Use optimized project-specific assets rather than copying the full WordPress uploads directory. GIF covers preserve their animation; images and the hero reel are loaded locally. Keep individual GitHub-hosted media files reasonably small and consider object storage/CDN for large videos.
+
+### Imported case batch
+
+31 projects were migrated from the WordPress site in one batch. Their copy comes from the original `work` posts (Chinese body text and the `txt_en` field); the eight projects that had no body text on the live site (阿里云云谷、龙城CC、净地良材、净地良材产品&空间) have copy written from the project scope, and the four cases missing only the English body (阿里巴巴访客中心、盒马鲜生昆明店、「历史与创想」展) were translated from the Chinese. `year` is only set where the original text states one, and should be filled in for the remaining cases.
+
+Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>/quality/80/interlace/1`, so JPEGs and PNGs are resized copies rather than the multi-megabyte originals. Animated GIFs were re-encoded as animated WebP via `imageMogr2/format/webp`; three GIFs that the CDN refused to process (too many frames) are still stored as GIF. All 31 cases use `home: false`, so they appear under the **All** filter and their own detail routes without changing the homepage Featured selection.

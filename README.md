@@ -119,7 +119,9 @@ Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>
 
 ### Title-only cases
 
-24 projects without confirmed public copy or imagery are represented by their Chinese names only. Their Markdown entries use `placeholder: true`; the cards appear in the **All** filter without images or links, and no detail routes or sitemap URLs are generated. The unpublished 百年江丰文献展 photographs are archived under `src/content/case-drafts/discover-jiang-feng/` and are not included in the public build.
+23 projects without confirmed public copy or imagery are represented by their Chinese names only. Their Markdown entries use `placeholder: true`; the cards appear in the **All** filter without images or links, and no detail routes or sitemap URLs are generated.
+
+百年江丰文献展 (Discover Jiang Feng) is a separate case: the exhibition was never published on the WordPress site, but its 20 photographs were still on the CDN, so the case is published with the real images and placeholder copy.
 
 To complete a placeholder when approved source material is available:
 

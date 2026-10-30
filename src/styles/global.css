@@ -434,7 +434,7 @@ input:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: clamp(22px, 2.78vw, 52px);
-  row-gap: clamp(42px, 6vw, 88px);
+  row-gap: clamp(30px, 4vw, 60px);
   padding-top: 28px;
 }
 
@@ -1449,7 +1449,7 @@ input:focus-visible {
 
   .case-grid {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 35px;
+    row-gap: 28px;
     padding-top: 19px;
   }
 

@@ -14,8 +14,6 @@ Static Astro portfolio for INWA SPACE, using the authorized 2x4.org homepage as 
 
 The homepage includes a rotating studio statement, searchable project cards, and filters for featured work, client, sector, service, and all projects. The **All** filter is the default view; Featured narrows the grid to the eight projects marked `home: true`. Cases appear four at a time; scrolling to the end of the visible list loads the next batch, and changing a filter or search starts again from the first batch. Project detail pages are generated from the same Markdown content source.
 
-An electronic creature wanders the site on its own, drawn as inline SVG in `src/components/BioCreature.astro` and rendered by `SiteLayout`. Three shapes ship — `line`, `pixel` and `circuit` — and `/creature/` shows all three side by side. The site-wide creature reads `?creature=line|pixel|circuit` from the URL so a shape can be previewed without a rebuild. It ignores the pointer, pauses when the tab is hidden, and stays still under `prefers-reduced-motion`.
-
 Only media selected for this site is copied into `public/assets/`; the 5.4 GB WordPress uploads directory is not part of this project.
 
 The About and Contact pages and their navigation links are hosted locally.
@@ -121,14 +119,16 @@ Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>
 
 ### Title-only cases
 
-23 projects without confirmed public copy or imagery are represented by their Chinese names only. Their Markdown entries use `placeholder: true`; the cards appear in the **All** filter without images or links, and no detail routes or sitemap URLs are generated.
+23 projects without confirmed public copy or imagery carry metadata only. Their Markdown entries use `placeholder: true`; the cards appear in the **All** filter, show the default `public/assets/cases/_placeholder.svg` cover instead of a photograph, are not links, and generate no detail route or sitemap URL. Because the frontmatter is filled in, they also take part in the **Client**, **Sector** and **Service** filters.
+
+The metadata for these 23 projects — English title, category, sector, services and client — was derived from the project names, because none of them exist as `work` posts in the WordPress database. Treat it as provisional until the source material is confirmed.
 
 百年江丰文献展 (Discover Jiang Feng) is a separate case: the exhibition was never published on the WordPress site, but its 20 photographs were still on the CDN, so the case is published with the real images and placeholder copy.
 
 To complete a placeholder when approved source material is available:
 
 1. Add the cover and ordered gallery images under `public/assets/cases/<case-id>/`.
-2. Replace the title-only frontmatter with the full case fields shown in **Add a case** and remove `placeholder: true`.
+2. Set `cover` to the new image and remove `placeholder: true`; the rest of the frontmatter is already in place.
 3. Add the verified Chinese and English project descriptions to the Markdown file.
 
 Astro will then generate its detail route and include it in the sitemap. Keep `home: false` until the project is ready for the Featured selection.

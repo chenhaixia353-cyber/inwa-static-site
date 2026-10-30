@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import BioCreature from '../components/BioCreature.astro';
 
 interface Props {
   title?: string;
@@ -8,7 +7,6 @@ interface Props {
   canonicalPath?: string;
   socialImage?: string;
   bodyClass?: string;
-  showCreature?: boolean;
 }
 
 const {
@@ -17,7 +15,6 @@ const {
   canonicalPath = '',
   socialImage = '/assets/cases/space-of-amap/cover.jpg',
   bodyClass = '',
-  showCreature = true,
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const canonicalUrl = Astro.site
@@ -77,6 +74,5 @@ const organizationSchema = siteUrl
   </head>
   <body class={bodyClass}>
     <slot />
-    {showCreature && <BioCreature host />}
   </body>
 </html>

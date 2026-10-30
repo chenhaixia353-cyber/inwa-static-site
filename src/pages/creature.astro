@@ -1,0 +1,147 @@
+---
+import BioCreature from '../components/BioCreature.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const variants = [
+  {
+    id: 'line',
+    name: '极简线稿',
+    note: '单色描边，跟随 currentColor，尾部轻摆。',
+  },
+  {
+    id: 'pixel',
+    name: '像素精灵',
+    note: '8-bit 点阵，眼睛是真正的镂空，背景透出来。',
+  },
+  {
+    id: 'circuit',
+    name: '电路仿生体',
+    note: '几何拼装，核心与节点呼吸闪烁，天线虚线流动。',
+  },
+];
+---
+
+<SiteLayout
+  title="电子仿生兽 · 形态预览｜INWA SPACE 因未设计"
+  description="INWA SPACE 电子仿生兽的三种形态预览：极简线稿、像素精灵与电路仿生体。"
+  canonicalPath="creature/"
+  showCreature={false}
+>
+  <main class="creature-page">
+    <header class="creature-page__header">
+      <p class="eyebrow">INWA SPACE <span>/</span> ELECTRONIC CREATURE</p>
+      <h1>电子仿生兽 · 三种形态</h1>
+      <p class="creature-page__intro">
+        它们自己在页面上游走：随机挑一个方向走一段，停一会儿，再换个方向。
+        在其他任意页面上都能看到全站的那一只；用 <code>?creature=line</code>、
+        <code>?creature=pixel</code>、<code>?creature=circuit</code> 可以切换全站形态。
+      </p>
+    </header>
+
+    <div class="creature-grid">
+      {
+        variants.map((variant) => (
+          <section class="creature-panel">
+            <div class="creature-panel__head">
+              <h2>{variant.name}</h2>
+              <code>{variant.id}</code>
+            </div>
+            <div class="creature-stage">
+              <BioCreature variant={variant.id as 'line' | 'pixel' | 'circuit'} contained />
+            </div>
+            <p class="creature-panel__note">{variant.note}</p>
+          </section>
+        ))
+      }
+    </div>
+  </main>
+</SiteLayout>
+
+<style>
+  .creature-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(60px, 9vw, 130px) clamp(20px, 5vw, 48px) clamp(70px, 9vw, 140px);
+  }
+
+  .creature-page__header {
+    max-width: 720px;
+    margin-bottom: clamp(40px, 6vw, 76px);
+  }
+
+  .creature-page__header h1 {
+    margin: 14px 0 0;
+    font-size: clamp(30px, 4.2vw, 54px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+  }
+
+  .creature-page__intro {
+    margin: 20px 0 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .creature-page__intro code {
+    padding: 2px 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #f2f2f0;
+    color: #111;
+    font-size: 12px;
+  }
+
+  .creature-grid {
+    display: grid;
+    gap: clamp(20px, 2.4vw, 34px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .creature-panel__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #111;
+  }
+
+  .creature-panel__head h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+
+  .creature-panel__head code {
+    color: #999;
+    font-size: 11px;
+  }
+
+  .creature-stage {
+    position: relative;
+    height: 240px;
+    margin-top: 16px;
+    overflow: hidden;
+    background: #f2f2f0;
+  }
+
+  .creature-panel__note {
+    margin: 14px 0 0;
+    color: #666;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 860px) {
+    .creature-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .creature-stage {
+      height: 200px;
+    }
+  }
+</style>

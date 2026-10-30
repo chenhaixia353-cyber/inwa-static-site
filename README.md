@@ -14,6 +14,8 @@ Static Astro portfolio for INWA SPACE, using the authorized 2x4.org homepage as 
 
 The homepage includes a rotating studio statement, searchable project cards, and filters for featured work, client, sector, service, and all projects. The **All** filter is the default view; Featured narrows the grid to the eight projects marked `home: true`. Cases appear four at a time; scrolling to the end of the visible list loads the next batch, and changing a filter or search starts again from the first batch. Project detail pages are generated from the same Markdown content source.
 
+An electronic creature wanders the site on its own, drawn as inline SVG in `src/components/BioCreature.astro` and rendered by `SiteLayout`. Three shapes ship — `line`, `pixel` and `circuit` — and `/creature/` shows all three side by side. The site-wide creature reads `?creature=line|pixel|circuit` from the URL so a shape can be previewed without a rebuild. It ignores the pointer, pauses when the tab is hidden, and stays still under `prefers-reduced-motion`.
+
 Only media selected for this site is copied into `public/assets/`; the 5.4 GB WordPress uploads directory is not part of this project.
 
 The About and Contact pages and their navigation links are hosted locally.

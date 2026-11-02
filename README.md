@@ -43,6 +43,25 @@ automatically; a sitemap helps discovery and crawling but cannot request specifi
 sitelinks. After deployment, verify the site in Google Search Console and Baidu
 Search Resource Platform, submit the sitemap URL, and monitor indexing reports.
 
+## Analytics
+
+Baidu Tongji (百度统计) records the page views. The snippet lives in
+`src/components/BaiduAnalytics.astro` and is rendered by `SiteLayout` in the page
+head. It is only emitted when `PUBLIC_BAIDU_ID` is set, so a build without that
+variable ships no tracking code at all, and it is skipped during `npm run dev` so
+local browsing never lands in the reports.
+
+Copy `.env.example` to `.env` and fill in the site ID from
+<https://tongji.baidu.com> for local builds:
+
+```sh
+PUBLIC_BAIDU_ID=your-site-id npm run build
+```
+
+The Pages workflow reads the same name from the repository settings, so add it once
+under **Settings → Secrets and variables → Actions → Variables → `PUBLIC_BAIDU_ID`**
+and every deployment picks it up.
+
 ## Local development
 
 Requires Node.js 22.12 or newer.

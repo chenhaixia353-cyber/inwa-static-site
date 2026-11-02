@@ -72,6 +72,8 @@ jobs:
             --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
+        env:
+          PUBLIC_BAIDU_ID: ${{ vars.PUBLIC_BAIDU_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

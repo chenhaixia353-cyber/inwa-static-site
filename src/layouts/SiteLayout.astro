@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BaiduAnalytics from '../components/BaiduAnalytics.astro';
 
 interface Props {
   title?: string;
@@ -54,6 +55,7 @@ const organizationSchema = siteUrl
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f8f8f6" />
     <meta name="description" content={description} />
+    <BaiduAnalytics />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="INWA SPACE" />

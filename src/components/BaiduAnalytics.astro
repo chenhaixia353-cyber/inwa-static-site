@@ -1,0 +1,17 @@
+---
+const siteId = import.meta.env.PUBLIC_BAIDU_ID;
+const enabled = Boolean(siteId) && /^[a-zA-Z0-9]+$/.test(siteId ?? '') && !import.meta.env.DEV;
+const snippet = enabled
+  ? `<script>
+var _hmt = _hmt || [];
+(function () {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?${siteId}";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>`
+  : '';
+---
+
+<Fragment set:html={snippet} />

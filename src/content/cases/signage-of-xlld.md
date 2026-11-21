@@ -10,7 +10,6 @@ client: 雪莲亮点
 year: "2021"
 cover: /assets/cases/signage-of-xlld/cover.jpg
 alt: 雪莲亮点导示项目
-home: false
 order: 39
 ---
 

@@ -9,7 +9,6 @@ services:
 client: OPPO
 cover: /assets/cases/oppo-ace2/cover.gif
 alt: OPPO ACE2 手机发布会动态视觉
-home: true
 order: 62
 ---
 

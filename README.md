@@ -12,7 +12,7 @@ Static Astro portfolio for INWA SPACE, using the authorized 2x4.org homepage as 
 | Careers | `/job/{role-id}/` | Static job descriptions and application links |
 | Project detail | `/work/{case-id}/` | Generated from each case Markdown file |
 
-The homepage includes a rotating studio statement, searchable project cards, and filters for featured work, client, sector, service, and all projects. The **All** filter is the default view; Featured narrows the grid to the eight projects marked `home: true`. Cases appear four at a time; scrolling to the end of the visible list loads the next batch, and changing a filter or search starts again from the first batch. Project detail pages are generated from the same Markdown content source.
+The homepage includes a rotating studio statement, searchable project cards, and filters for all projects, client, sector, and service. The **All** filter is the default view and comes first in the toolbar. Cases appear four at a time; scrolling to the end of the visible list loads the next batch, and changing a filter or search starts again from the first batch. Project detail pages are generated from the same Markdown content source.
 
 Only media selected for this site is copied into `public/assets/`; the 5.4 GB WordPress uploads directory is not part of this project.
 
@@ -101,14 +101,13 @@ npm run preview
    client: 客户名称
    cover: /assets/cases/<case-id>/cover.jpg
    alt: 封面图片的中文说明
-   home: true
    order: 9
    ---
 
    在此补充中文项目介绍。使用空行分段。
    ```
 
-3. Use a unique, URL-safe case ID. `order` controls the homepage order. `sector` and `services` supply filter options. Set `home: false` to keep the case in the detail routes and All filter, but omit it from Featured.
+3. Use a unique, URL-safe case ID. `order` controls the homepage order. `sector` and `services` supply filter options.
 4. Run `npm run build`, then commit the Markdown and media files.
 
 The generated case URL is `/work/<case-id>/`.
@@ -140,7 +139,7 @@ Use optimized project-specific assets rather than copying the full WordPress upl
 
 31 projects were migrated from the WordPress site in one batch. Their copy comes from the original `work` posts (Chinese body text); the eight projects that had no body text on the live site (阿里云云谷、龙城CC、净地良材、净地良材产品&空间) have copy written from the project scope. `year` is only set where the original text states one, and should be filled in for the remaining cases. Two further WordPress posts were published later: INCLUSION 品牌空间规范 (`branding-space-of-inclusion`) and 盈致未来文创 (`branding-of-into-create`), both with their original copy and CDN media.
 
-Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>/quality/80/interlace/1`, so JPEGs and PNGs are resized copies rather than the multi-megabyte originals. Animated GIFs were re-encoded as animated WebP via `imageMogr2/format/webp`; three GIFs that the CDN refused to process (too many frames) are still stored as GIF. All 31 cases use `home: false`, so they appear under the **All** filter and their own detail routes without changing the homepage Featured selection.
+Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>/quality/80/interlace/1`, so JPEGs and PNGs are resized copies rather than the multi-megabyte originals. Animated GIFs were re-encoded as animated WebP via `imageMogr2/format/webp`; three GIFs that the CDN refused to process (too many frames) are still stored as GIF. All 31 cases appear under the **All** filter and their own detail routes.
 
 ### Title-only cases
 
@@ -156,4 +155,4 @@ To complete a placeholder when approved source material is available:
 2. Set `cover` to the new image and remove `placeholder: true`; the rest of the frontmatter is already in place.
 3. Add the verified Chinese project description to the Markdown file.
 
-Astro will then generate its detail route and include it in the sitemap. Keep `home: false` until the project is ready for the Featured selection.
+Astro will then generate its detail route and include it in the sitemap.

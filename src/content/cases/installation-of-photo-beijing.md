@@ -9,6 +9,5 @@ services:
 client: 北京国际摄影周
 alt: 摄影周装置项目
 placeholder: true
-home: false
 order: 55
 ---

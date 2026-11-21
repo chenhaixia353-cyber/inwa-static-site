@@ -10,7 +10,6 @@ client: 盈投置地
 year: "2020"
 cover: /assets/cases/branding-of-into-create/cover.jpg
 alt: 盈致未来文创项目
-home: false
 order: 41
 ---
 

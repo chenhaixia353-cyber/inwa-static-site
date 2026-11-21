@@ -9,7 +9,6 @@ services:
 client: 中央美术学院美术馆
 cover: /assets/cases/cafam-future/cover.jpg
 alt: CAFAM未来展项目
-home: false
 order: 24
 ---
 

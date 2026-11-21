@@ -10,7 +10,6 @@ client: 蚂蚁集团
 year: "2018"
 cover: /assets/cases/branding-of-atec-2018/cover.jpg
 alt: ATEC-2018 品牌形象项目
-home: false
 order: 12
 ---
 

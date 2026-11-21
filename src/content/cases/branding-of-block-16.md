@@ -10,7 +10,6 @@ client: 高北十六创意园
 year: "2017"
 cover: /assets/cases/branding-of-block-16/cover.jpg
 alt: 高北十六品牌形象项目
-home: false
 order: 36
 ---
 

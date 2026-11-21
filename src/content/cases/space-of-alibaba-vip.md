@@ -10,7 +10,6 @@ client: 阿里巴巴集团
 year: "2021"
 cover: /assets/cases/space-of-alibaba-vip/cover.jpg
 alt: 阿里巴巴访客中心西溪B区VIP空间改造设计项目
-home: false
 order: 45
 ---
 

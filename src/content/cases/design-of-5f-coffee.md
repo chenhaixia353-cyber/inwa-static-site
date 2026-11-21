@@ -9,6 +9,5 @@ services:
 client: 5楼咖啡
 alt: 5楼咖啡空间设计项目
 placeholder: true
-home: false
 order: 44
 ---

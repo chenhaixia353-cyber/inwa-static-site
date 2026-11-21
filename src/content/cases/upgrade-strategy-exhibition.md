@@ -9,7 +9,6 @@ services:
 client: 深圳华侨城创意文化园
 cover: /assets/cases/upgrade-strategy-exhibition/cover.jpg
 alt: 升级策略展项目
-home: false
 order: 22
 ---
 

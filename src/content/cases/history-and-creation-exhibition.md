@@ -9,7 +9,6 @@ services:
 client: 华侨城苏河湾
 cover: /assets/cases/history-and-creation-exhibition/cover.jpg
 alt: "「历史与创想」展项目"
-home: false
 order: 23
 ---
 

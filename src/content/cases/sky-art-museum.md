@@ -9,6 +9,5 @@ services:
 client: 天空美术馆
 alt: 天空美术馆项目
 placeholder: true
-home: false
 order: 19
 ---

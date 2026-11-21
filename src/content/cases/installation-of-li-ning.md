@@ -9,6 +9,5 @@ services:
 client: 李宁
 alt: 李宁䨻装置项目
 placeholder: true
-home: false
 order: 51
 ---

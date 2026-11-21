@@ -9,6 +9,5 @@ services:
 client: 阿里巴巴集团
 alt: 阿里年陈135装置项目
 placeholder: true
-home: false
 order: 52
 ---

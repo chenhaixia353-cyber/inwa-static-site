@@ -9,6 +9,5 @@ services:
 client: 可丽饼店
 alt: 可丽饼店空间设计项目
 placeholder: true
-home: false
 order: 47
 ---

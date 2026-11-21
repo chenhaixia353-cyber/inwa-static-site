@@ -9,7 +9,6 @@ services:
 client: 上海汽车博物馆
 cover: /assets/cases/exhibition-for-shanghai-auto-museum/cover.jpg
 alt: 上海汽车博物馆国车展项目
-home: false
 order: 15
 ---
 

@@ -9,7 +9,6 @@ services:
 client: 饿了么
 alt: 饿了么上海总部品牌文化展陈设计项目
 placeholder: true
-home: false
 order: 4
 ---
 

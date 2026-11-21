@@ -9,7 +9,6 @@ services:
 client: 深圳华侨城创意文化园
 cover: /assets/cases/journey-of-rebirth-exhibition/cover.jpg
 alt: 再生历程展项目
-home: false
 order: 21
 ---
 

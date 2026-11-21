@@ -9,7 +9,6 @@ services:
 client: 蚂蚁集团
 cover: /assets/cases/branding-of-dspa/cover.jpg
 alt: 数安联盟品牌项目
-home: false
 order: 35
 ---
 

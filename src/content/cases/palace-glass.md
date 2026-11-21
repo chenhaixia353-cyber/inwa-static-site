@@ -9,7 +9,6 @@ services:
 client: 故宫博物院
 cover: /assets/cases/palace-glass/cover.png
 alt: 故宫博物院藏玻璃精品展视觉项目
-home: true
 order: 16
 ---
 

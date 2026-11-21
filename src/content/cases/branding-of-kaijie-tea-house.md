@@ -9,6 +9,5 @@ services:
 client: 凯捷茶庄
 alt: 凯捷茶庄品牌设计项目
 placeholder: true
-home: false
 order: 60
 ---

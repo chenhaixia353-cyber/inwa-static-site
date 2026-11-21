@@ -9,7 +9,6 @@ services:
 client: 蚂蚁集团
 cover: /assets/cases/branding-of-inclusion/cover.jpg
 alt: INCLUSION 品牌形象系统项目
-home: false
 order: 27
 ---
 

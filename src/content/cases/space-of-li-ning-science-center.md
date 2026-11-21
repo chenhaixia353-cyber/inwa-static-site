@@ -9,6 +9,5 @@ services:
 client: 李宁
 alt: 李宁科学中心空间设计项目
 placeholder: true
-home: false
 order: 2
 ---

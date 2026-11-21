@@ -9,7 +9,6 @@ services:
 client: 囍市
 cover: /assets/cases/xi-festival/cover.jpg
 alt: 囍市／隆福之春电子音乐派对项目
-home: true
 order: 17
 ---
 

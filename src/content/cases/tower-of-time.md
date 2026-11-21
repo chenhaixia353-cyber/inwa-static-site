@@ -9,6 +9,5 @@ services:
 client: 时光塔
 alt: 时光塔项目
 placeholder: true
-home: false
 order: 38
 ---

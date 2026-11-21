@@ -9,6 +9,5 @@ services:
 client: 上品堂
 alt: 上品堂品牌设计项目
 placeholder: true
-home: false
 order: 59
 ---

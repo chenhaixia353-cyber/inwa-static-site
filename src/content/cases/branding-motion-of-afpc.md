@@ -10,7 +10,6 @@ client: 蚂蚁财富
 year: "2018"
 cover: /assets/cases/branding-motion-of-afpc/cover.jpg
 alt: 蚂蚁财富伙伴大会项目
-home: false
 order: 34
 ---
 

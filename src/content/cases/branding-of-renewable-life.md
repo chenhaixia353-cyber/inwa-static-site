@@ -9,7 +9,6 @@ services:
 client: 铂鑫控股集团
 cover: /assets/cases/branding-of-renewable-life/cover.jpg
 alt: 重源品牌形象项目
-home: false
 order: 43
 ---
 

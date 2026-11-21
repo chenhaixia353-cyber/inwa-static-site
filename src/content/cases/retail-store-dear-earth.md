@@ -9,7 +9,6 @@ services:
 client: 净地良材
 cover: /assets/cases/retail-store-dear-earth/cover.jpg
 alt: 净地良材产品与空间项目
-home: false
 order: 50
 ---
 

@@ -13,7 +13,6 @@ const cases = defineCollection({
       services: z.array(z.string()).default([]),
       cover: z.string().optional(),
       alt: z.string().optional(),
-      home: z.boolean().default(true),
       order: z.number().default(100),
       client: z.string().optional(),
       year: z.string().optional(),

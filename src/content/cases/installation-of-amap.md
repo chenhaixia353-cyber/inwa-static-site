@@ -9,6 +9,5 @@ services:
 client: 高德地图
 alt: 高德装置项目
 placeholder: true
-home: false
 order: 54
 ---

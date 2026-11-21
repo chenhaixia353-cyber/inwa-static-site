@@ -9,6 +9,5 @@ services:
 client: 日照绿茶
 alt: 日照绿茶包装设计项目
 placeholder: true
-home: false
 order: 57
 ---

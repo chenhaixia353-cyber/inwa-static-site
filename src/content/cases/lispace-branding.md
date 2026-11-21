@@ -9,7 +9,6 @@ services:
 client: 联合设
 cover: /assets/cases/lispace-branding/cover.jpg
 alt: 联合设品牌设计项目
-home: true
 order: 29
 ---
 

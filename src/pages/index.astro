@@ -32,11 +32,10 @@ const initiallyVisible = new Set(cases.slice(0, 4).map(({ id }) => id));
     <section class="work-section section-pad" id="work" aria-label="Selected projects">
       <div class="work-toolbar">
         <nav class="filter-nav" aria-label="Filter projects">
-          <button class="filter-mode" type="button" data-filter-mode="featured" aria-pressed="false">Featured</button>
+          <button class="filter-mode is-active" type="button" data-filter-mode="all" aria-pressed="true">All</button>
           <button class="filter-mode" type="button" data-filter-mode="client" aria-pressed="false">Client</button>
           <button class="filter-mode" type="button" data-filter-mode="sector" aria-pressed="false">Sector</button>
           <button class="filter-mode" type="button" data-filter-mode="service" aria-pressed="false">Service</button>
-          <button class="filter-mode is-active" type="button" data-filter-mode="all" aria-pressed="true">All</button>
         </nav>
         <span class="results-count" aria-live="polite">
           <span id="visible-count">{String(projectCount).padStart(2, '0')}</span> PROJECTS
@@ -56,7 +55,6 @@ const initiallyVisible = new Set(cases.slice(0, 4).map(({ id }) => id));
             cover={data.cover}
             alt={data.alt}
             order={data.order}
-            featured={data.home}
             placeholder={data.placeholder}
             visibleInitially={initiallyVisible.has(id)}
           />
@@ -142,15 +140,13 @@ const initiallyVisible = new Set(cases.slice(0, 4).map(({ id }) => id));
     matchingCards = cards.filter((card) => {
       const searchableText = `${card.textContent} ${card.dataset.client} ${card.dataset.sector} ${card.dataset.services}`.toLocaleLowerCase();
       const matchesMode =
-        activeMode === 'featured'
-          ? card.dataset.featured === 'true'
-          : activeMode === 'client'
-            ? !terms.has('client') || card.dataset.client === terms.get('client')
-            : activeMode === 'sector'
-              ? !terms.has('sector') || card.dataset.sector === terms.get('sector')
-              : activeMode === 'service'
-                ? !terms.has('service') || (card.dataset.services ?? '').split('|').includes(terms.get('service') ?? '')
-                : true;
+        activeMode === 'client'
+          ? !terms.has('client') || card.dataset.client === terms.get('client')
+          : activeMode === 'sector'
+            ? !terms.has('sector') || card.dataset.sector === terms.get('sector')
+            : activeMode === 'service'
+              ? !terms.has('service') || (card.dataset.services ?? '').split('|').includes(terms.get('service') ?? '')
+              : true;
       return matchesMode && (!query || searchableText.includes(query));
     });
     if (!loadObserver) loadedCount = matchingCards.length;
@@ -188,7 +184,7 @@ const initiallyVisible = new Set(cases.slice(0, 4).map(({ id }) => id));
   }
 
   modes.forEach((button) => {
-    button.addEventListener('click', () => setActiveMode(button.dataset.filterMode ?? 'featured'));
+    button.addEventListener('click', () => setActiveMode(button.dataset.filterMode ?? 'all'));
   });
   searchInput?.addEventListener('input', () => updateCards());
 

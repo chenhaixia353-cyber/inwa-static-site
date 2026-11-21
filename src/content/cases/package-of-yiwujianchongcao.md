@@ -9,6 +9,5 @@ services:
 client: 一物兼
 alt: 一物兼虫草包装设计项目
 placeholder: true
-home: false
 order: 58
 ---

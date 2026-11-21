@@ -9,7 +9,6 @@ services:
 client: 景德镇御窑博物馆
 cover: /assets/cases/signage-of-jik-museum/cover.jpg
 alt: 景德镇御窑博物馆导示项目
-home: false
 order: 31
 ---
 

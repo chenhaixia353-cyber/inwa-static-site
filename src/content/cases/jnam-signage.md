@@ -9,7 +9,6 @@ services:
 client: 济宁市美术馆
 cover: /assets/cases/jnam-signage/cover.jpg
 alt: 济宁市美术馆导示设计项目
-home: true
 order: 61
 ---
 

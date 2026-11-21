@@ -10,7 +10,6 @@ client: 蚂蚁集团
 year: "2017"
 cover: /assets/cases/branding-motion-of-atec-2017/cover.jpg
 alt: ATEC-2017 主题视频项目
-home: false
 order: 10
 ---
 

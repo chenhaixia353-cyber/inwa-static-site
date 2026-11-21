@@ -9,7 +9,6 @@ services:
 client: 龙城CC
 cover: /assets/cases/branding-of-cc/cover.jpg
 alt: 龙城CC创意街区品牌项目
-home: false
 order: 33
 ---
 

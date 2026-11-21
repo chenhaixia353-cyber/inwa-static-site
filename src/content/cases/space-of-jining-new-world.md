@@ -9,6 +9,5 @@ services:
 client: 济宁新天地
 alt: 济宁新天地空间设计项目
 placeholder: true
-home: false
 order: 37
 ---

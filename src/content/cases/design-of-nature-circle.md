@@ -9,6 +9,5 @@ services:
 client: 自然圈
 alt: 自然圈设计项目
 placeholder: true
-home: false
 order: 48
 ---

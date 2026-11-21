@@ -9,7 +9,6 @@ services:
 client: 高德地图
 cover: /assets/cases/space-of-amap/cover.jpg
 alt: 高德地图总部文化空间项目
-home: true
 order: 5
 ---
 

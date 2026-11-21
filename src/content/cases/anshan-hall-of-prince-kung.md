@@ -9,6 +9,5 @@ services:
 client: 恭王府博物馆
 alt: 恭王府安善堂项目
 placeholder: true
-home: false
 order: 6
 ---

@@ -9,7 +9,6 @@ services:
 client: 净地良材
 cover: /assets/cases/branding-of-dear-earth/cover.jpg
 alt: 净地良材品牌项目
-home: false
 order: 49
 ---
 

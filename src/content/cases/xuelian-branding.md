@@ -9,7 +9,6 @@ services:
 client: 雪莲亮点
 cover: /assets/cases/xuelian-branding/cover.jpg
 alt: 雪莲亮点品牌空间体验项目
-home: true
 order: 40
 ---
 

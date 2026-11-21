@@ -9,6 +9,5 @@ services:
 client: forforfree
 alt: forforfree 品牌设计项目
 placeholder: true
-home: false
 order: 42
 ---

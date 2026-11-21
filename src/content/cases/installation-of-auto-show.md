@@ -9,6 +9,5 @@ services:
 client: 上海汽车博物馆
 alt: 国车展装置项目
 placeholder: true
-home: false
 order: 65
 ---

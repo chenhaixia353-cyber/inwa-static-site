@@ -9,7 +9,6 @@ services:
 client: 济宁市美术馆
 cover: /assets/cases/jnam-branding/cover.gif
 alt: 济宁市美术馆品牌项目动态视觉
-home: true
 order: 30
 ---
 

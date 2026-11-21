@@ -9,7 +9,6 @@ services:
 client: 盒马鲜生
 cover: /assets/cases/culture-space-of-hema/cover.jpg
 alt: 盒马鲜生昆明顺城购物中心特色店项目
-home: false
 order: 46
 ---
 

@@ -10,7 +10,6 @@ client: 阿里云
 year: "2021"
 cover: /assets/cases/space-of-alibaba-cloud/cover.jpg
 alt: 阿里云云谷访客中心文化软装设计项目
-home: false
 order: 7
 ---
 

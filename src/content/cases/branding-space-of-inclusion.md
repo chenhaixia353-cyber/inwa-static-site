@@ -10,7 +10,6 @@ client: 蚂蚁集团
 year: "2022"
 cover: /assets/cases/branding-space-of-inclusion/cover.jpg
 alt: INCLUSION 品牌空间规范项目
-home: false
 order: 18
 ---
 

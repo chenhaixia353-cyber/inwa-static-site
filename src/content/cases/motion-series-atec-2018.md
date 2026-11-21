@@ -10,7 +10,6 @@ client: 蚂蚁集团
 year: "2018"
 cover: /assets/cases/motion-series-atec-2018/cover.jpg
 alt: ATEC-2018 大会现场视频项目
-home: false
 order: 14
 ---
 

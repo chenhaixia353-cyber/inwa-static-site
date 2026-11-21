@@ -9,7 +9,6 @@ services:
 client: 百年江丰文献展
 cover: /assets/cases/discover-jiang-feng/cover.jpg
 alt: 百年江丰文献展项目
-home: false
 order: 64
 ---
 

@@ -9,7 +9,6 @@ services:
 client: 蚂蚁集团
 cover: /assets/cases/package-of-ant-forest/cover.jpg
 alt: 蚂蚁森林农产品包装项目
-home: false
 order: 56
 ---
 

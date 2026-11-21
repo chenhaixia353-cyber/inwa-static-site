@@ -9,7 +9,6 @@ services:
 client: 济宁城投控股集团
 cover: /assets/cases/signage-of-jnct/cover.png
 alt: 济宁城投导示项目
-home: false
 order: 32
 ---
 

@@ -9,6 +9,5 @@ services:
 client: 玉屏箫笛博物馆
 alt: 玉屏箫笛博物馆项目
 placeholder: true
-home: false
 order: 3
 ---

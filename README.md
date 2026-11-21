@@ -93,27 +93,33 @@ npm run preview
    ---
    title: 项目中文名
    titleEn: PROJECT NAME
-   category: 项目类别
+   category: 展陈设计
    sector: 所属领域
    services:
      - 品牌识别
      - 空间设计
    client: 客户名称
-   descriptionEn: |
-     English project description. Separate paragraphs with a blank line.
    cover: /assets/cases/<case-id>/cover.jpg
    alt: 封面图片的中文说明
    home: true
    order: 9
    ---
 
-   在此补充中文项目介绍。使用空行分段；英文介绍写在 `descriptionEn` 中。
+   在此补充中文项目介绍。使用空行分段。
    ```
 
 3. Use a unique, URL-safe case ID. `order` controls the homepage order. `sector` and `services` supply filter options. Set `home: false` to keep the case in the detail routes and All filter, but omit it from Featured.
 4. Run `npm run build`, then commit the Markdown and media files.
 
 The generated case URL is `/work/<case-id>/`.
+
+### Case order and category
+
+`order` follows the studio's project master list: it is the position of the case in
+that list, and the homepage renders the cases in that order. `category` uses one
+of five values — 展陈设计, 标识设计, 商业空间, 装置设计, 包装设计 — and is shown on
+the project card and on the project detail page. `sector` and `services` are
+separate fields that feed the homepage Client, Sector and Service filters.
 
 ## GitHub Pages deployment
 
@@ -132,7 +138,7 @@ Use optimized project-specific assets rather than copying the full WordPress upl
 
 ### Imported case batch
 
-31 projects were migrated from the WordPress site in one batch. Their copy comes from the original `work` posts (Chinese body text and the `txt_en` field); the eight projects that had no body text on the live site (阿里云云谷、龙城CC、净地良材、净地良材产品&空间) have copy written from the project scope, and the four cases missing only the English body (阿里巴巴访客中心、盒马鲜生昆明店、「历史与创想」展) were translated from the Chinese. `year` is only set where the original text states one, and should be filled in for the remaining cases.
+31 projects were migrated from the WordPress site in one batch. Their copy comes from the original `work` posts (Chinese body text); the eight projects that had no body text on the live site (阿里云云谷、龙城CC、净地良材、净地良材产品&空间) have copy written from the project scope. `year` is only set where the original text states one, and should be filled in for the remaining cases. Two further WordPress posts were published later: INCLUSION 品牌空间规范 (`branding-space-of-inclusion`) and 盈致未来文创 (`branding-of-into-create`), both with their original copy and CDN media.
 
 Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>/quality/80/interlace/1`, so JPEGs and PNGs are resized copies rather than the multi-megabyte originals. Animated GIFs were re-encoded as animated WebP via `imageMogr2/format/webp`; three GIFs that the CDN refused to process (too many frames) are still stored as GIF. All 31 cases use `home: false`, so they appear under the **All** filter and their own detail routes without changing the homepage Featured selection.
 
@@ -148,6 +154,6 @@ To complete a placeholder when approved source material is available:
 
 1. Add the cover and ordered gallery images under `public/assets/cases/<case-id>/`.
 2. Set `cover` to the new image and remove `placeholder: true`; the rest of the frontmatter is already in place.
-3. Add the verified Chinese and English project descriptions to the Markdown file.
+3. Add the verified Chinese project description to the Markdown file.
 
 Astro will then generate its detail route and include it in the sitemap. Keep `home: false` until the project is ready for the Featured selection.

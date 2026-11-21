@@ -24,8 +24,8 @@ export async function getStaticPaths() {
 
 const { entry, galleryFiles } = Astro.props;
 const { Content } = await render(entry);
-const { title, titleEn, category, cover, alt, client, year, descriptionEn } = entry.data;
-if (!titleEn || !category || !cover || !alt || !client || !descriptionEn) {
+const { title, titleEn, category, cover, alt, client, year } = entry.data;
+if (!titleEn || !category || !cover || !alt || !client) {
   throw new Error(`Case "${entry.id}" is missing required project-detail fields.`);
 }
 const base = import.meta.env.BASE_URL;
@@ -72,9 +72,6 @@ const galleryImages = galleryFiles.slice(1).map((file: string, index: number) =>
       </div>
       <div class="project-content">
         <div class="project-description prose" lang="zh-CN"><Content /></div>
-        <div class="project-description project-description-en prose" lang="en">
-          {descriptionEn.split(/\n\s*\n/).filter(Boolean).map((paragraph) => <p>{paragraph}</p>)}
-        </div>
       </div>
     </section>
     {galleryImages.length > 0 && (

@@ -1,22 +1,16 @@
 ---
-title: 囍市／隆福之春电子音乐派对
+title: 囍市／隆福之春 电子音乐派对
 titleEn: XI FESTIVAL 2021
-category: 活动视觉
+category: 展陈设计
 sector: 文化与艺术
 services:
   - 活动体验
   - 视觉识别
 client: 囍市
-descriptionEn: |
-  "囍" Spring of Longfu is a large-scale gathering for Beijing's electronic music community, organized by UID Works. It made its debut on the top floor of the Longfu Temple Cultural Center.
-
-  "Fu, Lu, Shou, Xi"—blessings of prosperity, success, longevity, and happiness—are among the Chinese characters most often reinterpreted through calligraphy, seals, inscriptions, and paper cutting. Building on this rich tradition, we wanted to give "囍" a younger spirit through contemporary design.
-
-  Inspired by the folk wisdom in the book "100 Auspicious Images", we created one hundred contemporary "囍" characters based on traditional stories, including wordplay, folk paper-cutting, zodiac, psychedelic, and dancing themes. On the rooftop observation deck of Longfu Building, the collection became an illuminated installation visitors could walk through and explore up close, carrying cultural memory and auspicious meaning into a contemporary space.
 cover: /assets/cases/xi-festival/cover.jpg
 alt: 囍市／隆福之春电子音乐派对项目
 home: true
-order: 7
+order: 17
 ---
 
 「囍」隆福之春电子音乐派对由 UID Works 策划，是北京电子音乐圈首次大规模的集体发声，首次亮相于隆福寺文化中心顶层。

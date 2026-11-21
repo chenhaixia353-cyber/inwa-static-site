@@ -17,7 +17,6 @@ const cases = defineCollection({
       order: z.number().default(100),
       client: z.string().optional(),
       year: z.string().optional(),
-      descriptionEn: z.string().optional(),
       placeholder: z.boolean().default(false),
     })
     .superRefine((entry, context) => {
@@ -30,7 +29,6 @@ const cases = defineCollection({
         cover: entry.cover,
         alt: entry.alt,
         client: entry.client,
-        descriptionEn: entry.descriptionEn,
       };
 
       for (const [field, value] of Object.entries(requiredFields)) {

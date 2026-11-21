@@ -1,23 +1,17 @@
 ---
 title: ATEC-2018 主题视频
 titleEn: BRANDING MOTION
-category: 活动视觉
+category: 展陈设计
 sector: 科技与数码
 services:
   - 活动体验
   - 视觉识别
 client: 蚂蚁集团
 year: "2018"
-descriptionEn: |
-  ATEC Conference (Ant Technology Exploration Conference) is Ant Group's leading technology exploration conference for global partners, which is an important part of the Apsara Conference.
-
-  After the ATEC-17 visual and branding motion, we continue to create the video for the ATEC-18. It starts from the exploration of "land", "ocean", "cosmos" and "microcosm" by technological innovation, and transfers "Technology for good, Finlife for All" in an abstract visual dynamic transmission.
-
-  Video creation combines with a complicated main screen + ground screen, cone screen, and two side rear screens. All the different screen contents echo each other, and together constitute a 360-degree interactive experience on the site of the conference. The conference motion setting is simple, with great visual impact and appeal.
 cover: /assets/cases/motion-of-atec-2018/cover.jpg
 alt: ATEC-2018 主题视频项目
 home: false
-order: 18
+order: 13
 ---
 
 ATEC大会（Ant Technology Exploration Conference）是蚂蚁集团面向全球合作伙伴的前沿技术探索大会，是云栖大会的重要组成之一。

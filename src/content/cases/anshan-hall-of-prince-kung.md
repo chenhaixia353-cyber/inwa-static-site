@@ -1,16 +1,14 @@
 ---
 title: 恭王府安善堂
 titleEn: ANSHAN HALL OF PRINCE KUNG
-category: 展览视觉
+category: 展陈设计
 sector: 文化与艺术
 services:
   - 展览视觉
   - 空间体验
 client: 恭王府博物馆
-descriptionEn: |
-  Project information for Anshan Hall at Prince Kung's Mansion is being compiled. The full introduction, design notes and exhibition information will be added once the source material is confirmed.
 alt: 恭王府安善堂项目
 placeholder: true
 home: false
-order: 45
+order: 6
 ---

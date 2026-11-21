@@ -1,20 +1,16 @@
 ---
 title: 龙城CC创意街区品牌
 titleEn: BRANDING OF CC
-category: 品牌设计
+category: 标识设计
 sector: 商业与地产
 services:
   - 品牌识别
   - 视觉识别
 client: 龙城CC
-descriptionEn: |
-  Branding of Longcheng CC Creative Block is the brand identity system INWA created for CC Creative Block.
-
-  Starting from the positioning of the creative block, we built a complete set of visual assets — logo, wordmark, graphics and motion identity — and carried the modular graphic system through signage, space and digital applications. The identity establishes recognition through simple geometric structures and decisive colour contrasts, giving the block a clear character and a stable sense of order within a fast-changing urban context.
 cover: /assets/cases/branding-of-cc/cover.jpg
 alt: 龙城CC创意街区品牌项目
 home: false
-order: 13
+order: 33
 ---
 
 龙城CC创意街区品牌是 INWA 为龙城CC打造的品牌形象系统。

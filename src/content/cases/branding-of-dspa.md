@@ -1,19 +1,16 @@
 ---
 title: 数安联盟品牌
 titleEn: BRANDING OF DS&PA
-category: 品牌设计
+category: 标识设计
 sector: 科技与数码
 services:
   - 品牌识别
   - 视觉识别
 client: 蚂蚁集团
-descriptionEn: |
-  Data Security & Privacy Alliance makes the "productizes" of existing data security capabilities by Ant Group to reduce the risk of user privacy data leakage.
-  We designed the branding and logo motion for the Data Security & Privacy Alliance. "Data" is the core of the brand. The design takes "Data Security Lock" as the core visual, presenting the flow of data in a visually organized and clear way to convey the "sensible, controllable and curable" of data security risks. The design transforms the brand keywords "Safety, Share, Security" into the visualization of mobile data, and forms a multi-dimensional dynamic visual system with brand graphics and images.
 cover: /assets/cases/branding-of-dspa/cover.jpg
 alt: 数安联盟品牌项目
 home: false
-order: 23
+order: 35
 ---
 
 数安联盟全称为“数据安全与隐私保障联盟”，品牌将将蚂蚁集团已有的数据安全能力“产品化”输出，降低用户隐私数据泄露风险。

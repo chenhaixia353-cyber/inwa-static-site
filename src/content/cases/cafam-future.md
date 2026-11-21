@@ -1,22 +1,16 @@
 ---
 title: CAFAM未来展
 titleEn: CAFAM·FUTURE
-category: 展览视觉
+category: 展陈设计
 sector: 文化与艺术
 services:
   - 展览视觉
   - 空间体验
 client: 中央美术学院美术馆
-descriptionEn: |
-  The Frist CAFAM·Future Exhibition –“Sub-Phenomena: Report on the State of Chinese Young Art”is curated by CAFAM. The exhibition is a presentation of the fieldwork of today's youth art ecology, encouraging young people to explore new artistic language.
-
-  Starting from the theme "sub-phenomenon", we create a series of visual images, complete the exhibition visual and space design, exhibition promotional materials and book design. We choose a youthfulness blue, which runs through the entire exhibition and vision, forming a memory of color recognition of the exhibition.
-
-  For the exhibition books, we print the name of the book on the side of the flip, opposite to the normal spine, to express the rebellion and challenge of young artists to traditional forms.
 cover: /assets/cases/cafam-future/cover.jpg
 alt: CAFAM未来展项目
 home: false
-order: 38
+order: 24
 ---
 
 首届CAFAM未来展——“亚现象·中国青年艺术生态报告” 由中央美术学院美术馆策划。展览是对当今青年艺术生态的田野考察的呈现，鼓励青年人探索新的艺术语言。

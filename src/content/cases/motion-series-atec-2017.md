@@ -1,23 +1,17 @@
 ---
 title: ATEC-2017 大会现场视频
 titleEn: MOTION SERIES
-category: 活动视觉
+category: 展陈设计
 sector: 科技与数码
 services:
   - 活动体验
   - 视觉识别
 client: 蚂蚁集团
 year: "2017"
-descriptionEn: |
-  ATEC Conference (Ant Technology Exploration Conference) is Ant Group's leading technology exploration conference for global partners, which is one of the important components of the Apsara Conference.
-
-  We used "Tribute to Turing" as the clue to curate and design the series of motions for the ATEC conference,. At the beginning of the conference, we chose "Piano solo op.11" which was composed by artificial intelligence composer Aiva, and the pianist performed this piece on the scene of our creative video. For the roundtable forum session, we planned a video of "Turing" and the guests questioning and answering with him in the air. With the light show of the on-site matrix led beam, we completed the "Turing" through the "Gate of Light" (video) and forum the entire "Turing" & guest dialogue.
-
-  The concept has won praise from the guests and all parties on site.
 cover: /assets/cases/motion-series-atec-2017/cover.jpg
 alt: ATEC-2017 大会现场视频项目
 home: false
-order: 19
+order: 11
 ---
 
 ATEC大会（Ant Technology Exploration Conference）是蚂蚁集团面向全球合作伙伴的前沿技术探索大会，是云栖大会的重要组成之一。

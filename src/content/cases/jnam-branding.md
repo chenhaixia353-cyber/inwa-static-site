@@ -1,24 +1,16 @@
 ---
-title: 济宁市美术馆品牌
+title: 济宁市美术馆标识
 titleEn: BRANDING OF JNAM
-category: 品牌设计
+category: 标识设计
 sector: 文化与艺术
 services:
   - 品牌识别
   - 视觉识别
 client: 济宁市美术馆
-descriptionEn: |
-  Jining Art Museum is one of the four major venues of Jining City Cultural Center in Shandong Province. It is the first art museum designed by famous architect Nishizawa Ryue in China, and was named "Top Ten Most Attention Architecture of Museums in the World in 2019" by designboom. The museum respects the opinions of the architects very much and even the logo we designed was sent to Japan for approval by Nishizawa Ryue before final confirmation.
-
-  Branding Visual System / Starting from the museum's freely undulating, lotus-leaf-shaped roof and drawing on the landscapes of Jining, Liangshan, the Grand Canal, and Weishan Lake, we developed organic, flowing hyperbolic lines to give the brand graphics a light, fluid quality.
-
-  Branding Typography System / The building's slender columns inform the vertical strokes of the type, while its horizontal, single-story form shapes the wordmark. These ideas extend into a complete system of brand typography.
-
-  Logo Motion / Flowing curves and vertical lines representing the columns emerge and dissolve to express the architecture and brand identity.
 cover: /assets/cases/jnam-branding/cover.gif
 alt: 济宁市美术馆品牌项目动态视觉
 home: true
-order: 3
+order: 30
 ---
 
 济宁市美术馆是山东省济宁市文化中心四大场馆之一，也是著名建筑师西泽立卫在中国设计落地的第一所美术馆，被 designboom 评为“2019年全球最受瞩目的十座博物馆建筑”之一。美术馆尊重建筑师的意见，我们设计的 Logo 也寄往日本，经西泽立卫认可后才最终确认。

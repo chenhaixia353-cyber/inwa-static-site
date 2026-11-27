@@ -5,25 +5,6 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import { contact } from '../data/contact';
 import { jobs, recruitmentEmail } from '../data/jobs';
 
-const socialLinks = [
-  {
-    name: 'WeChat',
-    href: 'https://mp.weixin.qq.com/s/M_vuvR_NfLQCc8NyhlJ3Bg',
-  },
-  {
-    name: 'Instagram',
-    href: 'https://www.instagram.com/inwadesignstudio/?igshid=630j1wht06r3',
-  },
-  {
-    name: 'Behance',
-    href: 'https://www.behance.net/566544828d16',
-  },
-  {
-    name: '小红书',
-    href: 'https://www.xiaohongshu.com/user/profile/6034dc71000000000100a4d6?channel_type=web_note_detail_r10&xsec_token=ABIb9qj1iUKQj7gyZzaylcRio0oAIWJAEQ88Y2No1bUas=&xsec_source=pc_note&wechatWid=8016ae9c7e3925dd1e417b966bfc844d&wechatOrigin=menu',
-  },
-];
-
 const contactEmail = contact.email;
 const contactPhone = contact.phone;
 const contactPhoneHref = contact.phoneHref;
@@ -67,12 +48,6 @@ const recruitmentSubject = encodeURIComponent('应聘 INWA SPACE 职位');
               <span class="contact-label">T</span>
               <span class="contact-value">{contactPhone}</span>
             </a>
-          </div>
-
-          <div class="social-links" aria-label="Social media">
-            {socialLinks.map(({ name, href }) => (
-              <a href={href} target="_blank" rel="noreferrer">{name} <span aria-hidden="true">↗</span></a>
-            ))}
           </div>
         </div>
       </div>

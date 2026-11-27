@@ -28,6 +28,9 @@ env:
   # The bucket and its region work as either a repository variable or a secret.
   COS_BUCKET: ${{ vars.COS_BUCKET || secrets.COS_BUCKET }}
   COS_REGION: ${{ vars.COS_REGION || secrets.COS_REGION }}
+  # The CAM key, under either spelling.
+  COS_SECRET_ID: ${{ secrets.TENCENTCLOUD_SECRET_ID || secrets.TENCENT_CLOUD_SECRET_ID }}
+  COS_SECRET_KEY: ${{ secrets.TENCENTCLOUD_SECRET_KEY || secrets.TENCENT_CLOUD_SECRET_KEY }}
 
 jobs:
   build:
@@ -38,11 +41,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check COS configuration
-        env:
-          TENCENTCLOUD_SECRET_ID: ${{ secrets.TENCENTCLOUD_SECRET_ID }}
-          TENCENTCLOUD_SECRET_KEY: ${{ secrets.TENCENTCLOUD_SECRET_KEY }}
         run: |
-          for name in COS_BUCKET COS_REGION TENCENTCLOUD_SECRET_ID TENCENTCLOUD_SECRET_KEY; do
+          for name in COS_BUCKET COS_REGION COS_SECRET_ID COS_SECRET_KEY; do
             if [ -z "${!name}" ]; then
               echo "::error::$name is not set"
               exit 1
@@ -90,8 +90,8 @@ jobs:
       - name: Upload to COS
         uses: TencentCloud/cos-action@v1
         with:
-          secret_id: ${{ secrets.TENCENTCLOUD_SECRET_ID }}
-          secret_key: ${{ secrets.TENCENTCLOUD_SECRET_KEY }}
+          secret_id: ${{ env.COS_SECRET_ID }}
+          secret_key: ${{ env.COS_SECRET_KEY }}
           cos_bucket: ${{ env.COS_BUCKET }}
           cos_region: ${{ env.COS_REGION }}
           local_path: dist

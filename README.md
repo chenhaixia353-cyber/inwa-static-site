@@ -135,7 +135,7 @@ The site is published at `https://i-space.design/`, served from a Tencent Cloud 
 The workflow `.github/workflows/cos-release.yml` builds the site and publishes it to the COS bucket on every push to a `release-*` branch. The deploy job runs on the `cos-release` environment, so it waits for a manual approval before it writes to the bucket:
 
 - **Settings → Environments → New environment** named `cos-release`, with **Required reviewers** enabled. The approval button appears on the pending run in the Actions tab.
-- **Settings → Secrets and variables → Actions → Secrets**: `TENCENTCLOUD_SECRET_ID` and `TENCENTCLOUD_SECRET_KEY` hold the Tencent Cloud CAM key.
+- **Settings → Secrets and variables → Actions → Secrets**: `TENCENT_CLOUD_SECRET_ID` and `TENCENT_CLOUD_SECRET_KEY` hold the Tencent Cloud CAM key. `TENCENTCLOUD_SECRET_ID` and `TENCENTCLOUD_SECRET_KEY` work as well.
 - **Settings → Secrets and variables → Actions → Variables**: `COS_BUCKET` and `COS_REGION` hold the bucket name and its region, for example `inwa-1250000000` and `ap-guangzhou`. Both names are also read from secrets when they are stored there instead.
 
 The upload replaces the whole bucket root: files that are not part of the build are deleted from the bucket. Set the `COS_CLEAN` variable to `false` to keep them.

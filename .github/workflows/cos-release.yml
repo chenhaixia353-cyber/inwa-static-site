@@ -37,6 +37,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check COS configuration
+        env:
+          TENCENTCLOUD_SECRET_ID: ${{ secrets.TENCENTCLOUD_SECRET_ID }}
+          TENCENTCLOUD_SECRET_KEY: ${{ secrets.TENCENTCLOUD_SECRET_KEY }}
+        run: |
+          for name in COS_BUCKET COS_REGION TENCENTCLOUD_SECRET_ID TENCENTCLOUD_SECRET_KEY; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is not set"
+              exit 1
+            fi
+          done
+          echo "bucket=$COS_BUCKET region=$COS_REGION"
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:

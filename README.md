@@ -20,11 +20,17 @@ The About and Contact pages and their navigation links are hosted locally.
 
 ## SEO
 
-The canonical site URL is `https://chenhaixia353-cyber.github.io/inwa-static-site/`.
+The canonical site URL is `https://i-space.design/`.
 The build generates `sitemap.xml` from the homepage, studio pages, job listings, and
 project collection. `robots.txt` points crawlers to that sitemap. Page titles,
 descriptions, canonical URLs, social-sharing metadata, and Organization structured
 data are rendered into each page.
+
+`astro.config.mjs` reads the deployment target from the `SITE_URL` environment
+variable and falls back to `https://i-space.design/`. Each workflow sets it before
+building: the COS workflow uses the `SITE_URL` repository variable when it exists,
+and the Pages workflow uses the origin that `actions/configure-pages` detects.
+Set `SITE_URL` yourself to build for another domain.
 
 Use descriptive, natural-language phrases in visible page titles, headings, project
 copy, and image alt text. Prioritize a small number of topic clusters:
@@ -120,14 +126,28 @@ of five values — 展陈设计, 标识设计, 商业空间, 装置设计, 包�
 the project card and on the project detail page. `sector` and `services` are
 separate fields that feed the homepage Client, Sector and Service filters.
 
-## GitHub Pages deployment
+## Deployment
 
-The included Actions workflow (`.github/workflows/astro.yml`) builds and publishes `dist` on every push to `main`. In repository settings, enable **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+The site is published at `https://i-space.design/`, served from a Tencent Cloud COS bucket. Two workflows cover it.
+
+### Tencent COS release deployment
+
+The workflow `.github/workflows/cos-release.yml` builds the site and publishes it to the COS bucket on every push to a `release-*` branch. The deploy job runs on the `cos-release` environment, so it waits for a manual approval before it writes to the bucket:
+
+- **Settings → Environments → New environment** named `cos-release`, with **Required reviewers** enabled. The approval button appears on the pending run in the Actions tab.
+- **Settings → Secrets and variables → Actions → Secrets**: `TENCENTCLOUD_SECRET_ID` and `TENCENTCLOUD_SECRET_KEY` hold the Tencent Cloud CAM key.
+- **Settings → Secrets and variables → Actions → Variables**: `COS_BUCKET` and `COS_REGION` hold the bucket name and its region, for example `inwa-1250000000` and `ap-guangzhou`. Both names are also read from secrets when they are stored there instead.
+
+The upload replaces the whole bucket root: files that are not part of the build are deleted from the bucket. Set the `COS_CLEAN` variable to `false` to keep them.
+
+### GitHub Pages deployment
+
+The workflow `.github/workflows/astro.yml` builds and publishes `dist` on every push to `main`. In repository settings, enable **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
 The workflow calls `actions/configure-pages`, which reads the Pages settings and passes the correct `--site` and `--base` to `astro build`. The base path therefore follows the Pages configuration automatically:
 
 - **Project URL** (`https://chenhaixia353-cyber.github.io/inwa-static-site/`) — the current setting, no extra configuration needed.
-- **Custom domain** (`https://www.inwa.top/`) — set the custom domain in **Settings → Pages**, add a `public/CNAME` file containing `www.inwa.top`, and point the domain at GitHub Pages with a `CNAME` DNS record (`www` → `chenhaixia353-cyber.github.io`, apex → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`).
+- **Custom domain** — set the custom domain in **Settings → Pages** and add a `public/CNAME` file containing the domain.
 
 For local previews of a subpath build, set `PAGES_BASE_PATH` before `npm run build`; `astro.config.mjs` reads it as the base path.
 

@@ -69,10 +69,10 @@ jobs:
       - name: Build with Astro
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
-            --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
         env:
+          SITE_URL: ${{ steps.pages.outputs.origin }}
           PUBLIC_BAIDU_ID: ${{ vars.PUBLIC_BAIDU_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

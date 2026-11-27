@@ -1,0 +1,86 @@
+# Deploy a release-* branch to Tencent Cloud COS.
+#
+# The build runs on every push to a release-* branch. The deploy job waits on
+# the `cos-release` environment, so it only runs after a reviewer approves it:
+# Settings → Environments → cos-release → Required reviewers.
+
+name: Deploy release to Tencent COS
+
+on:
+  push:
+    branches:
+      - 'release-*'
+
+  # Manual runs are handy for re-publishing a release without a new commit.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cos-release
+  cancel-in-progress: false
+
+env:
+  BUILD_PATH: .
+  # Canonical URLs of the deployed site, used by Astro for the sitemap and meta tags.
+  SITE_URL: ${{ vars.SITE_URL || 'https://i-space.design' }}
+  # The bucket and its region work as either a repository variable or a secret.
+  COS_BUCKET: ${{ vars.COS_BUCKET || secrets.COS_BUCKET }}
+  COS_REGION: ${{ vars.COS_REGION || secrets.COS_REGION }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: ${{ env.BUILD_PATH }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Build with Astro
+        run: npx astro build --base "/"
+        working-directory: ${{ env.BUILD_PATH }}
+        env:
+          PUBLIC_BAIDU_ID: ${{ vars.PUBLIC_BAIDU_ID }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: ${{ env.BUILD_PATH }}/dist
+          include-hidden-files: true
+          if-no-files-found: error
+
+  deploy:
+    name: Deploy to Tencent COS
+    needs: build
+    runs-on: ubuntu-latest
+    environment: cos-release
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: dist
+
+      - name: Upload to COS
+        uses: TencentCloud/cos-action@v1
+        with:
+          secret_id: ${{ secrets.TENCENTCLOUD_SECRET_ID }}
+          secret_key: ${{ secrets.TENCENTCLOUD_SECRET_KEY }}
+          cos_bucket: ${{ env.COS_BUCKET }}
+          cos_region: ${{ env.COS_REGION }}
+          local_path: dist
+          remote_path: ''
+          clean: ${{ vars.COS_CLEAN || 'true' }}

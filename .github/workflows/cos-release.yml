@@ -110,10 +110,15 @@ jobs:
 
           # sync skips files already matching at the destination, including
           # unchanged assets/cases, while transferring new or changed files.
+          #
+          # Eight files at a time keeps the request rate below the limit the
+          # bucket enforces: a throttled request is retried, and the retry
+          # reads the body again, which coscli counts a second time and
+          # shows as a progress over 100 percent.
           SYNC_ARGS=(
             sync dist "$DESTINATION"
             --recursive
-            --routines 16
+            --routines 8
             --thread-num 4
             --retry-num 5
             --err-retry-num 5

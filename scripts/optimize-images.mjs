@@ -7,7 +7,7 @@
 // The source file is removed once the WebP is written, and the `cover` entry
 // of every case file is updated to the new extension.
 
-import { readdir, readFile, writeFile, unlink } from 'node:fs/promises';
+import { readdir, readFile, stat, writeFile, unlink } from 'node:fs/promises';
 import { join, extname, parse } from 'node:path';
 import sharp from 'sharp';
 
@@ -67,6 +67,28 @@ async function updateCovers() {
   return updated;
 }
 
+// Every cover has to point at a file that is there, otherwise the page
+// shows a broken image. The placeholder cases have no cover of their own.
+async function verifyCovers() {
+  const files = await readdir(contentRoot);
+  const broken = [];
+  for (const file of files) {
+    if (!file.endsWith('.md')) continue;
+    const source = await readFile(join(contentRoot, file), 'utf8');
+    const cover = source.match(/^cover: (.+)$/m)?.[1]?.trim();
+    if (!cover) {
+      if (!/^placeholder: true$/m.test(source)) broken.push(`${file}: no cover`);
+      continue;
+    }
+    try {
+      await stat(join('public', cover));
+    } catch {
+      broken.push(`${file}: ${cover} is missing`);
+    }
+  }
+  return broken;
+}
+
 const images = await collectImages(assetRoot);
 const results = [];
 const failures = [];
@@ -103,3 +125,12 @@ if (failures.length > 0) {
 
 const updated = await updateCovers();
 console.log(`updated ${updated} case files`);
+
+const broken = await verifyCovers();
+if (broken.length > 0) {
+  console.log('covers that do not point at a file:');
+  for (const entry of broken) {
+    console.log(`  ${entry}`);
+  }
+  process.exitCode = 1;
+}

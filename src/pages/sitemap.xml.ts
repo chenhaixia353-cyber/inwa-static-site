@@ -12,9 +12,13 @@ export async function GET({ site }: { site: URL | undefined }) {
     'about/',
     'contact/',
     ...jobs.map((job) => `job/${job.slug}/`),
+    // The collection order changes between builds, so the routes are sorted
+    // to keep the sitemap the same when nothing else changed.
     ...cases
       .filter(({ data }) => !data.placeholder)
-      .map((entry) => `work/${entry.id}/`),
+      .map((entry) => entry.id)
+      .sort()
+      .map((id) => `work/${id}/`),
   ];
   const base = import.meta.env.BASE_URL;
   const urls = routes

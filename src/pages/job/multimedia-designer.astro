@@ -1,0 +1,42 @@
+---
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<SiteLayout
+  title="该岗位已下线 — INWA SPACE 招聘"
+  description="新媒体设计师岗位已下线。查看 INWA SPACE 当前在招岗位：空间设计师、平面设计师、设计实习岗。"
+  canonicalPath="contact/"
+>
+  <Fragment slot="head">
+    <meta http-equiv="refresh" content={`0;url=${base}contact/#jobs-title`} />
+    <meta name="robots" content="noindex" />
+  </Fragment>
+  <SiteHeader />
+  <main id="top" class="job-page">
+    <section class="job-hero section-pad" aria-labelledby="retired-title">
+      <p class="eyebrow">INWA SPACE <span>/</span> CAREERS</p>
+      <h1 id="retired-title">该岗位已下线</h1>
+      <p class="job-title-en">POSITION RETIRED</p>
+      <div class="job-hero-bottom">
+        <p>新媒体设计师暂时不再招聘，欢迎看看其他在招岗位。</p>
+        <span>BEIJING · INWA SPACE</span>
+      </div>
+    </section>
+
+    <section class="job-apply section-pad" aria-labelledby="retired-apply-title">
+      <p class="eyebrow">OPEN POSITIONS</p>
+      <div class="job-apply-content">
+        <h2 id="retired-apply-title">看看其他机会。</h2>
+        <p>空间设计师、平面设计师与设计实习岗正在招募中。</p>
+        <a href={`${base}contact/#jobs-title`}>
+          查看全部在招岗位 <span>↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <SiteFooter />
+</SiteLayout>

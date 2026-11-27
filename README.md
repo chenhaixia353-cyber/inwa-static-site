@@ -7,8 +7,8 @@ Static Astro portfolio for INWA SPACE, using the authorized 2x4.org homepage as 
 | Page | Local route | Source |
 | --- | --- | --- |
 | Portfolio homepage | `/` | `https://2x4.org/` (visual reference) |
-| About | `/about/` | INWA studio profile |
-| Contact | `/contact/` | INWA contact information and social channels |
+| About | `/about/` | Studio profile, business areas counted from the case collection |
+| Contact | `/contact/` | Studio address, phone, email and social channels |
 | Careers | `/job/{role-id}/` | Static job descriptions and application links |
 | Project detail | `/work/{case-id}/` | Generated from each case Markdown file |
 
@@ -36,8 +36,9 @@ Use descriptive, natural-language phrases in visible page titles, headings, proj
 copy, and image alt text. Prioritize a small number of topic clusters:
 
 - Studio and location: INWA SPACE, 因未设计, 北京独立设计机构, Beijing design studio.
-- Services: 北京品牌设计, 品牌策略与识别, 展览视觉设计, 文化空间设计, 导视系统设计,
-  品牌体验设计; branding, exhibition design, cultural space design.
+- Services: 展陈设计, 标识设计, 装置设计, 商业空间, 包装设计, 北京品牌设计,
+  展览视觉设计, 文化空间设计, 导视系统设计; branding, exhibition design,
+  signage design, cultural space design.
 - Case-specific searches: 高德地图办公空间文化展陈设计, 济宁市美术馆品牌与导视设计,
   故宫玻璃展览视觉设计, and the matching English project names.
 

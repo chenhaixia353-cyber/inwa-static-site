@@ -2,6 +2,7 @@
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { contact } from '../data/contact';
 import { jobs, recruitmentEmail } from '../data/jobs';
 
 const socialLinks = [
@@ -23,13 +24,17 @@ const socialLinks = [
   },
 ];
 
+const contactEmail = contact.email;
+const contactPhone = contact.phone;
+const contactPhoneHref = contact.phoneHref;
+
 const base = import.meta.env.BASE_URL;
 const recruitmentSubject = encodeURIComponent('应聘 INWA SPACE 职位');
 ---
 
 <SiteLayout
-  title="联系 INWA SPACE 因未设计｜北京品牌与空间设计"
-  description="联系北京 INWA SPACE，咨询品牌设计、展览视觉、文化空间与体验设计合作；查看工作室地址、电话和邮箱。"
+  title="联系 INWA SPACE｜北京品牌与空间设计"
+  description="联系北京 INWA SPACE，咨询展陈设计、标识设计、装置设计、商业空间与包装设计合作；查看工作室地址、电话和邮箱。"
   canonicalPath="contact/"
 >
   <SiteHeader />
@@ -51,10 +56,18 @@ const recruitmentSubject = encodeURIComponent('应聘 INWA SPACE 职位');
         </div>
         <div class="contact-info">
           <h2>期待听到你的想法。</h2>
-          <a class="contact-email" href="mailto:inwadesign@inwa.top">
-            inwadesign@inwa.top <span aria-hidden="true">↗</span>
-          </a>
-          <a class="contact-phone" href="tel:+8618611157743">+86 186 1115 7743</a>
+          <div class="contact-lines">
+            <a class="contact-line" href={`mailto:${contactEmail}`}>
+              <span class="contact-label">MAIL</span>
+              <span class="contact-value">
+                {contactEmail} <span aria-hidden="true">↗</span>
+              </span>
+            </a>
+            <a class="contact-line contact-line-phone" href={contactPhoneHref}>
+              <span class="contact-label">T</span>
+              <span class="contact-value">{contactPhone}</span>
+            </a>
+          </div>
 
           <div class="social-links" aria-label="Social media">
             {socialLinks.map(({ name, href }) => (
@@ -71,13 +84,18 @@ const recruitmentSubject = encodeURIComponent('应聘 INWA SPACE 职位');
         </div>
         <div class="contact-address">
           <h2>INWA SPACE · BEIJING</h2>
-          <p>北京市东城区东四南大街15号<br />雪莲亮点文创园308室</p>
-          <p class="address-en">Room 308, XLLD Creative Park,<br />No. 15 Dongsi South Street,<br />Dongcheng District, Beijing 100010</p>
+          <span class="contact-label">ADD</span>
+          <p>{contact.address}</p>
+          <p class="address-en">
+            Room 306, Building E, No. 46 Fangjia Hutong Courtyard,<br />
+            Dongcheng District, Beijing 100010
+          </p>
           <a
             class="map-link"
-            href="https://maps.apple.com/?q=Room%20308%2C%20XLLD%20Creative%20Park%2C%20No.%2015%20Dongsi%20South%20Street%2C%20Beijing"
+            href={contact.mapUrl}
             target="_blank"
             rel="noreferrer"
+            aria-label="在地图中打开工作室地址"
           >OPEN MAP <span aria-hidden="true">↗</span></a>
         </div>
       </div>

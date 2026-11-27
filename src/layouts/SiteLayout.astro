@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import BaiduAnalytics from '../components/BaiduAnalytics.astro';
+import { contact } from '../data/contact';
 
 interface Props {
   title?: string;
@@ -12,7 +13,7 @@ interface Props {
 
 const {
   title = 'INWA SPACE — Independent Creative Studio',
-  description = 'INWA SPACE 专注品牌策略与识别、展览视觉、文化空间和体验设计。',
+  description = 'INWA SPACE 专注展陈设计、标识设计、装置设计、商业空间与包装设计。',
   canonicalPath = '',
   socialImage = '/assets/cases/space-of-amap/cover.webp',
   bodyClass = '',
@@ -33,11 +34,15 @@ const organizationSchema = siteUrl
       name: 'INWA SPACE',
       alternateName: '因未设计',
       url: siteUrl,
-      description: '位于北京的独立设计机构，提供品牌策略与识别、展览视觉、文化空间及体验设计服务。',
-      email: 'inwadesign@inwa.top',
+      description: '位于北京的综合性设计机构，提供展陈设计、标识设计、装置设计、商业空间与包装设计服务。',
+      email: contact.email,
+      telephone: contact.phone,
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'Beijing',
+        streetAddress: contact.streetAddress,
+        addressRegion: contact.addressRegion,
+        addressLocality: contact.addressLocality,
+        postalCode: contact.postalCode,
         addressCountry: 'CN',
       },
       sameAs: [
@@ -69,6 +74,7 @@ const organizationSchema = siteUrl
     <meta name="twitter:description" content={description} />
     {socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
     <link rel="icon" href={`${base}favicon.ico`} sizes="any" />
+    <slot name="head" />
     <title>{title}</title>
     {organizationSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />

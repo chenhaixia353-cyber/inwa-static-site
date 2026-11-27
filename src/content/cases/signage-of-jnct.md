@@ -7,7 +7,7 @@ services:
   - 导示系统
   - 空间体验
 client: 济宁城投控股集团
-cover: /assets/cases/signage-of-jnct/cover.png
+cover: /assets/cases/signage-of-jnct/cover.webp
 alt: 济宁城投导示项目
 order: 32
 ---

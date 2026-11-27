@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 空间体验
 client: 中央美术学院美术馆
-cover: /assets/cases/beuys-in-china-exhibition/cover.jpg
+cover: /assets/cases/beuys-in-china-exhibition/cover.webp
 alt: 博伊斯在中国展项目
 order: 20
 ---

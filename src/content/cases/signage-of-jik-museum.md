@@ -7,7 +7,7 @@ services:
   - 导示系统
   - 空间体验
 client: 景德镇御窑博物馆
-cover: /assets/cases/signage-of-jik-museum/cover.jpg
+cover: /assets/cases/signage-of-jik-museum/cover.webp
 alt: 景德镇御窑博物馆导示项目
 order: 31
 ---

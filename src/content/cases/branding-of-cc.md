@@ -7,7 +7,7 @@ services:
   - 品牌识别
   - 视觉识别
 client: 龙城CC
-cover: /assets/cases/branding-of-cc/cover.jpg
+cover: /assets/cases/branding-of-cc/cover.webp
 alt: 龙城CC创意街区品牌项目
 order: 33
 ---

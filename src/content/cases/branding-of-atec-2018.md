@@ -8,7 +8,7 @@ services:
   - 视觉识别
 client: 蚂蚁集团
 year: "2018"
-cover: /assets/cases/branding-of-atec-2018/cover.jpg
+cover: /assets/cases/branding-of-atec-2018/cover.webp
 alt: ATEC-2018 品牌形象项目
 order: 12
 ---

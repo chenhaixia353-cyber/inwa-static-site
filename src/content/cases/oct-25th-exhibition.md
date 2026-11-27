@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 空间体验
 client: 华侨城集团
-cover: /assets/cases/oct-25th-exhibition/cover.gif
+cover: /assets/cases/oct-25th-exhibition/cover.webp
 alt: 华侨城25周年文化创意展项目
 order: 26
 ---

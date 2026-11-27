@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 空间体验
 client: 中央美术学院美术馆
-cover: /assets/cases/cafam-biennale/cover.jpg
+cover: /assets/cases/cafam-biennale/cover.webp
 alt: CAFAM双年展项目
 order: 25
 ---

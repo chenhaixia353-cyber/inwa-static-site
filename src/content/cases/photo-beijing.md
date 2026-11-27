@@ -8,7 +8,7 @@ services:
   - 空间体验
 client: 北京国际摄影周
 year: "2013"
-cover: /assets/cases/photo-beijing/cover.jpg
+cover: /assets/cases/photo-beijing/cover.webp
 alt: 北京国际摄影周项目
 order: 63
 ---

@@ -8,7 +8,7 @@ services:
   - 导示系统
 client: 高北十六创意园
 year: "2017"
-cover: /assets/cases/branding-of-block-16/cover.jpg
+cover: /assets/cases/branding-of-block-16/cover.webp
 alt: 高北十六品牌形象项目
 order: 36
 ---

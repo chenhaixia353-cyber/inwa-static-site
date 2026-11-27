@@ -7,7 +7,7 @@ services:
   - 空间体验
   - 品牌文化
 client: 盒马鲜生
-cover: /assets/cases/culture-space-of-hema/cover.jpg
+cover: /assets/cases/culture-space-of-hema/cover.webp
 alt: 盒马鲜生昆明顺城购物中心特色店项目
 order: 46
 ---

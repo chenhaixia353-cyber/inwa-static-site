@@ -7,7 +7,7 @@ services:
   - 品牌识别
   - 空间体验
 client: 雪莲亮点
-cover: /assets/cases/xuelian-branding/cover.jpg
+cover: /assets/cases/xuelian-branding/cover.webp
 alt: 雪莲亮点品牌空间体验项目
 order: 40
 ---

@@ -7,7 +7,7 @@ services:
   - 空间体验
   - 视觉识别
 client: 净地良材
-cover: /assets/cases/retail-store-dear-earth/cover.jpg
+cover: /assets/cases/retail-store-dear-earth/cover.webp
 alt: 净地良材产品与空间项目
 order: 50
 ---

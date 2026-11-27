@@ -7,7 +7,7 @@ services:
   - 品牌识别
   - 视觉识别
 client: 蚂蚁集团
-cover: /assets/cases/branding-of-dspa/cover.jpg
+cover: /assets/cases/branding-of-dspa/cover.webp
 alt: 数安联盟品牌项目
 order: 35
 ---

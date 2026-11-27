@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 空间体验
 client: 华侨城苏河湾
-cover: /assets/cases/history-and-creation-exhibition/cover.jpg
+cover: /assets/cases/history-and-creation-exhibition/cover.webp
 alt: "「历史与创想」展项目"
 order: 23
 ---

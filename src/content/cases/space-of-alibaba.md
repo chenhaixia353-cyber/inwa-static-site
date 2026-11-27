@@ -8,7 +8,7 @@ services:
   - 品牌文化
 client: 阿里巴巴集团
 year: "2021"
-cover: /assets/cases/space-of-alibaba/cover.jpg
+cover: /assets/cases/space-of-alibaba/cover.webp
 alt: 阿里巴巴访客中心西溪B区文化软装设计项目
 order: 8
 ---

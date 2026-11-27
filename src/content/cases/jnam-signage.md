@@ -7,7 +7,7 @@ services:
   - 导示系统
   - 空间体验
 client: 济宁市美术馆
-cover: /assets/cases/jnam-signage/cover.jpg
+cover: /assets/cases/jnam-signage/cover.webp
 alt: 济宁市美术馆导示设计项目
 order: 61
 ---

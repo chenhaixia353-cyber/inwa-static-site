@@ -7,7 +7,7 @@ services:
   - 品牌识别
   - 视觉识别
 client: 铂鑫控股集团
-cover: /assets/cases/branding-of-renewable-life/cover.jpg
+cover: /assets/cases/branding-of-renewable-life/cover.webp
 alt: 重源品牌形象项目
 order: 43
 ---

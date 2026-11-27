@@ -7,7 +7,7 @@ services:
   - 品牌识别
   - 视觉识别
 client: 净地良材
-cover: /assets/cases/branding-of-dear-earth/cover.jpg
+cover: /assets/cases/branding-of-dear-earth/cover.webp
 alt: 净地良材品牌项目
 order: 49
 ---

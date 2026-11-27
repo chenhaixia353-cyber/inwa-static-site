@@ -7,7 +7,7 @@ services:
   - 品牌识别
   - 视觉识别
 client: 蚂蚁集团
-cover: /assets/cases/branding-of-inclusion/cover.jpg
+cover: /assets/cases/branding-of-inclusion/cover.webp
 alt: INCLUSION 品牌形象系统项目
 order: 27
 ---

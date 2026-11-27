@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 空间体验
 client: 深圳华侨城创意文化园
-cover: /assets/cases/upgrade-strategy-exhibition/cover.jpg
+cover: /assets/cases/upgrade-strategy-exhibition/cover.webp
 alt: 升级策略展项目
 order: 22
 ---

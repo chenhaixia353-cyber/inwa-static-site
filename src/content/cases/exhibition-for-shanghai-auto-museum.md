@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 空间体验
 client: 上海汽车博物馆
-cover: /assets/cases/exhibition-for-shanghai-auto-museum/cover.jpg
+cover: /assets/cases/exhibition-for-shanghai-auto-museum/cover.webp
 alt: 上海汽车博物馆国车展项目
 order: 15
 ---

@@ -7,7 +7,7 @@ services:
   - 品牌识别
   - 视觉识别
 client: 联合设
-cover: /assets/cases/lispace-branding/cover.jpg
+cover: /assets/cases/lispace-branding/cover.webp
 alt: 联合设品牌设计项目
 order: 29
 ---

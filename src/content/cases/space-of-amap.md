@@ -7,7 +7,7 @@ services:
   - 空间体验
   - 品牌文化
 client: 高德地图
-cover: /assets/cases/space-of-amap/cover.jpg
+cover: /assets/cases/space-of-amap/cover.webp
 alt: 高德地图总部文化空间项目
 order: 5
 ---

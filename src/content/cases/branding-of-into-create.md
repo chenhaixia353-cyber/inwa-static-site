@@ -8,7 +8,7 @@ services:
   - 视觉识别
 client: 盈投置地
 year: "2020"
-cover: /assets/cases/branding-of-into-create/cover.jpg
+cover: /assets/cases/branding-of-into-create/cover.webp
 alt: 盈致未来文创项目
 order: 41
 ---

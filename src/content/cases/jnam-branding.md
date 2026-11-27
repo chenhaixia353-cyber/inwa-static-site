@@ -7,7 +7,7 @@ services:
   - 品牌识别
   - 视觉识别
 client: 济宁市美术馆
-cover: /assets/cases/jnam-branding/cover.gif
+cover: /assets/cases/jnam-branding/cover.webp
 alt: 济宁市美术馆品牌项目动态视觉
 order: 30
 ---

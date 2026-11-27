@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 空间体验
 client: 中央美术学院美术馆
-cover: /assets/cases/cafam-future/cover.jpg
+cover: /assets/cases/cafam-future/cover.webp
 alt: CAFAM未来展项目
 order: 24
 ---

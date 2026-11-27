@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 空间体验
 client: 百年江丰文献展
-cover: /assets/cases/discover-jiang-feng/cover.jpg
+cover: /assets/cases/discover-jiang-feng/cover.webp
 alt: 百年江丰文献展项目
 order: 64
 ---

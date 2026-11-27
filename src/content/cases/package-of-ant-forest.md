@@ -7,7 +7,7 @@ services:
   - 包装设计
   - 视觉识别
 client: 蚂蚁集团
-cover: /assets/cases/package-of-ant-forest/cover.jpg
+cover: /assets/cases/package-of-ant-forest/cover.webp
 alt: 蚂蚁森林农产品包装项目
 order: 56
 ---

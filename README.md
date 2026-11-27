@@ -92,7 +92,7 @@ npm run preview
 
 ## Add a case
 
-1. Add its homepage card image as `cover.*` under `public/assets/cases/<case-id>/`. Add the original detail images in display order as `gallery-01.*`, `gallery-02.*`, and so on. `gallery-01` becomes the detail-page banner; the remaining images are shown in the project gallery. Supported formats are JPG, PNG, GIF, WebP, and AVIF.
+1. Add its homepage card image as `cover.*` under `public/assets/cases/<case-id>/`. Add the original detail images in display order as `gallery-01.*`, `gallery-02.*`, and so on. `gallery-01` becomes the detail-page banner; the remaining images are shown in the project gallery. Supported formats are JPG, PNG, GIF, WebP, and AVIF. Run `npm run images` afterwards to store them as WebP.
 2. Create `src/content/cases/<case-id>.md` using this frontmatter:
 
    ```md
@@ -138,7 +138,9 @@ The workflow `.github/workflows/cos-release.yml` builds the site and publishes i
 - **Settings → Secrets and variables → Actions → Secrets**: `TENCENT_CLOUD_SECRET_ID` and `TENCENT_CLOUD_SECRET_KEY` hold the Tencent Cloud CAM key. `TENCENTCLOUD_SECRET_ID` and `TENCENTCLOUD_SECRET_KEY` work as well.
 - **Settings → Secrets and variables → Actions → Variables**: `COS_BUCKET` and `COS_REGION` hold the bucket name and its region, for example `inwa-1250000000` and `ap-guangzhou`. Both names are also read from secrets when they are stored there instead.
 
-The upload replaces the whole bucket root: files that are not part of the build are deleted from the bucket. Set the `COS_CLEAN` variable to `false` to keep them.
+The upload runs through [coscli](https://github.com/tencentyun/coscli), the Tencent Cloud command line tool. It compares the CRC64 of every file with the copy in the bucket and sends only what changed, so a release that touches one page uploads one file instead of the whole site. Files that are no longer part of the build are removed from the bucket; set the `COS_CLEAN` variable to `false` to keep them.
+
+The CAM key needs `cos:GetBucket`, `cos:HeadObject`, `cos:PutObject` and `cos:DeleteObject` on that bucket.
 
 ### GitHub Pages deployment
 
@@ -155,11 +157,15 @@ For local previews of a subpath build, set `PAGES_BASE_PATH` before `npm run bui
 
 Use optimized project-specific assets rather than copying the full WordPress uploads directory. GIF covers preserve their animation; images and the hero reel are loaded locally. Keep individual GitHub-hosted media files reasonably small and consider object storage/CDN for large videos.
 
+### Image format
+
+Every case image is stored as WebP. `npm run images` converts the JPG, PNG and GIF files under `public/assets/cases` with sharp: static images become WebP at quality 80, animated GIFs become animated WebP at quality 70, and anything wider than 1600 pixels is scaled down. The source file is removed and the `cover` entry of the case files is updated, so run it after adding new media. The batch of 724 images went from 273 MB to 87 MB.
+
 ### Imported case batch
 
 31 projects were migrated from the WordPress site in one batch. Their copy comes from the original `work` posts (Chinese body text); the eight projects that had no body text on the live site (阿里云云谷、龙城CC、净地良材、净地良材产品&空间) have copy written from the project scope. `year` is only set where the original text states one, and should be filled in for the remaining cases. Two further WordPress posts were published later: INCLUSION 品牌空间规范 (`branding-space-of-inclusion`) and 盈致未来文创 (`branding-of-into-create`), both with their original copy and CDN media.
 
-Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>/quality/80/interlace/1`, so JPEGs and PNGs are resized copies rather than the multi-megabyte originals. Animated GIFs were re-encoded as animated WebP via `imageMogr2/format/webp`; three GIFs that the CDN refused to process (too many frames) are still stored as GIF. All 31 cases appear under the **All** filter and their own detail routes.
+Image files were requested from `cdn.inwa.top` with `imageMogr2/thumbnail/1600x>/quality/80/interlace/1`, so JPEGs and PNGs are resized copies rather than the multi-megabyte originals. Animated GIFs were re-encoded as animated WebP via `imageMogr2/format/webp`; three GIFs that the CDN refused to process (too many frames) were still stored as GIF. Every case image is now stored as WebP. All 31 cases appear under the **All** filter and their own detail routes.
 
 ### Title-only cases
 

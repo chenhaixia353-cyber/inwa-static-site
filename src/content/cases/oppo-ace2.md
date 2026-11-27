@@ -7,7 +7,7 @@ services:
   - 活动体验
   - 视觉识别
 client: OPPO
-cover: /assets/cases/oppo-ace2/cover.gif
+cover: /assets/cases/oppo-ace2/cover.webp
 alt: OPPO ACE2 手机发布会动态视觉
 order: 62
 ---

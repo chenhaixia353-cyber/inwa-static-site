@@ -8,7 +8,7 @@ services:
   - 活动体验
 client: 蚂蚁财富
 year: "2018"
-cover: /assets/cases/branding-motion-of-afpc/cover.jpg
+cover: /assets/cases/branding-motion-of-afpc/cover.webp
 alt: 蚂蚁财富伙伴大会项目
 order: 34
 ---

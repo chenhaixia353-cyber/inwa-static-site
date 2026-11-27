@@ -8,7 +8,7 @@ services:
   - 空间体验
 client: 雪莲亮点
 year: "2021"
-cover: /assets/cases/signage-of-xlld/cover.jpg
+cover: /assets/cases/signage-of-xlld/cover.webp
 alt: 雪莲亮点导示项目
 order: 39
 ---

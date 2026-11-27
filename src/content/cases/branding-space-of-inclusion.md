@@ -8,7 +8,7 @@ services:
   - 品牌文化
 client: 蚂蚁集团
 year: "2022"
-cover: /assets/cases/branding-space-of-inclusion/cover.jpg
+cover: /assets/cases/branding-space-of-inclusion/cover.webp
 alt: INCLUSION 品牌空间规范项目
 order: 18
 ---

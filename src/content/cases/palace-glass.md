@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 视觉识别
 client: 故宫博物院
-cover: /assets/cases/palace-glass/cover.png
+cover: /assets/cases/palace-glass/cover.webp
 alt: 故宫博物院藏玻璃精品展视觉项目
 order: 16
 ---

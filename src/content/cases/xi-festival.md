@@ -7,7 +7,7 @@ services:
   - 活动体验
   - 视觉识别
 client: 囍市
-cover: /assets/cases/xi-festival/cover.jpg
+cover: /assets/cases/xi-festival/cover.webp
 alt: 囍市／隆福之春电子音乐派对项目
 order: 17
 ---

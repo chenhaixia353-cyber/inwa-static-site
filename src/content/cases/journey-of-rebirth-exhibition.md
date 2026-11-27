@@ -7,7 +7,7 @@ services:
   - 展览视觉
   - 空间体验
 client: 深圳华侨城创意文化园
-cover: /assets/cases/journey-of-rebirth-exhibition/cover.jpg
+cover: /assets/cases/journey-of-rebirth-exhibition/cover.webp
 alt: 再生历程展项目
 order: 21
 ---

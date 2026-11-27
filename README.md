@@ -142,6 +142,27 @@ The upload runs through [coscli](https://github.com/tencentyun/coscli), the Tenc
 
 The CAM key needs `cos:GetBucket`, `cos:HeadObject`, `cos:PutObject` and `cos:DeleteObject` on that bucket.
 
+### Caching
+
+The upload runs in two groups, and each group carries its own `Cache-Control`:
+
+| Group | Paths | Header |
+| --- | --- | --- |
+| assets | `assets/`, `_astro/` | `public, max-age=31536000, immutable` |
+| pages | everything else | `no-cache` |
+
+The pages are read again on every visit, the images and the hashed CSS and JS bundles can stay in the browser cache for a year. Without a `Cache-Control` header the CDN keeps a page for hours, so a release is only visible after the cached copy expires — that is how the old `.jpg` references were still being served after the switch to WebP.
+
+Set the CDN to **follow the origin** for the cache expiration (**缓存过期配置 → 跟随源站**) and purge the cached pages after a release (**刷新预热 → URL 刷新**).
+
+The headers only reach the objects that are uploaded, and coscli skips the files whose CRC64 already matches. To give the files that are already in the bucket the headers as well, delete them once and upload them again:
+
+```sh
+coscli rm cos://inwa-1250000000/ --recursive --include "\.(html|xml|txt)$" --force \
+  --secret-id "$COS_SECRET_ID" --secret-key "$COS_SECRET_KEY" --endpoint cos.ap-guangzhou.myqcloud.com
+npm run deploy
+```
+
 ### Local deploy
 
 `npm run deploy` builds the site and syncs it to the bucket from the local machine, with the same coscli command the workflow uses. Put the credentials in a `.env` file in the project root — git ignores it — or export them in the shell:

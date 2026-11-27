@@ -131,10 +131,7 @@ if (!skipBuild) {
 
 const coscli = await ensureCoscli();
 const endpoint = `cos.${region}.myqcloud.com`;
-const args = [
-  'sync',
-  'dist',
-  `cos://${bucket}/`,
+const common = [
   '--recursive',
   '--routines',
   '16',
@@ -155,14 +152,43 @@ const args = [
   '--endpoint',
   endpoint,
 ];
+const clean = (process.env.COS_CLEAN || 'true') === 'true';
 
-if ((process.env.COS_CLEAN || 'true') === 'true') args.push('--delete');
+// The pages are read again on every visit, the images and the hashed
+// bundles can stay in the browser cache for a year.
+const groups = [
+  {
+    name: 'assets',
+    filter: ['--include', '^(assets/|_astro/)'],
+    meta: 'Cache-Control:public, max-age=31536000, immutable',
+  },
+  {
+    name: 'pages',
+    filter: ['--exclude', '^(assets/|_astro/)'],
+    meta: 'Cache-Control:no-cache',
+  },
+];
 
-console.log(`syncing dist to cos://${bucket}/ (${endpoint})`);
-try {
-  await run(coscli, args);
-} catch {
-  console.error('the sync to COS failed, check the bucket name, the region and the CAM key');
-  process.exit(1);
+for (const group of groups) {
+  const args = [
+    'sync',
+    'dist',
+    `cos://${bucket}/`,
+    ...common,
+    ...group.filter,
+    '--meta',
+    group.meta,
+  ];
+  if (clean) args.push('--delete');
+
+  console.log(`syncing the ${group.name} to cos://${bucket}/ (${endpoint})`);
+  try {
+    await run(coscli, args);
+  } catch {
+    console.error(
+      `the sync of the ${group.name} failed, check the bucket name, the region and the CAM key`,
+    );
+    process.exit(1);
+  }
 }
 console.log('done');

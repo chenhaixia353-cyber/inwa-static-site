@@ -110,24 +110,39 @@ jobs:
 
           # sync skips files already matching at the destination, including
           # unchanged assets/cases, while transferring new or changed files.
-          SYNC_ARGS=(
-            sync dist "$DESTINATION"
-            --recursive
-            --routines 16
-            --thread-num 4
-            --retry-num 5
-            --err-retry-num 5
-            --err-retry-interval 2
-            --check-point
-            --force
-            --secret-id "$COS_SECRET_ID"
-            --secret-key "$COS_SECRET_KEY"
-            --endpoint "$ENDPOINT"
-          )
+          sync_group() {
+            local name="$1"
+            local meta="$2"
+            shift 2
+            local args=(
+              sync dist "$DESTINATION"
+              --recursive
+              --routines 16
+              --thread-num 4
+              --retry-num 5
+              --err-retry-num 5
+              --err-retry-interval 2
+              --check-point
+              --force
+              --secret-id "$COS_SECRET_ID"
+              --secret-key "$COS_SECRET_KEY"
+              --endpoint "$ENDPOINT"
+              --meta "$meta"
+              "$@"
+            )
 
-          # Preserve the workflow's previous clean behavior, but only when enabled.
-          if [[ "$COS_CLEAN" == "true" ]]; then
-            SYNC_ARGS+=(--delete)
-          fi
+            # Preserve the workflow's previous clean behavior, but only when enabled.
+            if [[ "$COS_CLEAN" == "true" ]]; then
+              args+=(--delete)
+            fi
 
-          "$COSCLI" "${SYNC_ARGS[@]}"
+            echo "syncing the $name"
+            "$COSCLI" "${args[@]}"
+          }
+
+          # The pages are read again on every visit, the images and the
+          # hashed bundles can stay in the browser cache for a year.
+          sync_group assets "Cache-Control:public, max-age=31536000, immutable" \
+            --include "^(assets/|_astro/)"
+          sync_group pages "Cache-Control:no-cache" \
+            --exclude "^(assets/|_astro/)"

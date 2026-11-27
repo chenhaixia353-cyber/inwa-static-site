@@ -110,8 +110,6 @@ jobs:
 
           # sync skips files already matching at the destination, including
           # unchanged assets/cases, while transferring new or changed files.
-          # The CDN caches by file type, so the objects carry no Cache-Control
-          # of their own and one sync covers the whole site.
           SYNC_ARGS=(
             sync dist "$DESTINATION"
             --recursive

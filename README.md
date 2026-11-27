@@ -142,6 +142,23 @@ The upload runs through [coscli](https://github.com/tencentyun/coscli), the Tenc
 
 The CAM key needs `cos:GetBucket`, `cos:HeadObject`, `cos:PutObject` and `cos:DeleteObject` on that bucket.
 
+### Local deploy
+
+`npm run deploy` builds the site and syncs it to the bucket from the local machine, with the same coscli command the workflow uses. Put the credentials in a `.env` file in the project root — git ignores it — or export them in the shell:
+
+```sh
+COS_BUCKET=inwa-1250000000
+COS_REGION=ap-guangzhou
+COS_SECRET_ID=your-cam-key-id
+COS_SECRET_KEY=your-cam-key
+```
+
+The script builds the site with the root base path and syncs `dist` to the bucket root: files that are already there with the same CRC64 are skipped, and the files that are no longer part of the build are removed. `TENCENT_CLOUD_SECRET_ID`/`TENCENT_CLOUD_SECRET_KEY` and `TENCENTCLOUD_SECRET_ID`/`TENCENTCLOUD_SECRET_KEY` work as well.
+
+- `--skip-build` syncs the `dist` that is already there instead of building first.
+- `COS_CLEAN=false` keeps the files in the bucket that are no longer part of the build.
+- `COSCLI_PATH` uses a coscli that is already installed; without it the script downloads the matching build into `.cache/`.
+
 ### GitHub Pages deployment
 
 The workflow `.github/workflows/astro.yml` builds and publishes `dist` on every push to `main`. In repository settings, enable **Settings → Pages → Build and deployment → Source: GitHub Actions**.

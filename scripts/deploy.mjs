@@ -29,7 +29,7 @@ import { pipeline } from 'node:stream/promises';
 
 const coscliVersion = '1.0.9';
 const cacheDir = '.cache';
-const coscliPath = join(cacheDir, 'coscli');
+const coscliPath = join(cacheDir, `coscli-v${coscliVersion}`);
 
 // The values that are not part of the environment yet come from `.env`.
 async function loadEnvFile() {
